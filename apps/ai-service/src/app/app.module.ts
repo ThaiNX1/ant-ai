@@ -42,22 +42,28 @@ import { HealthModule } from './health/health.module';
       } as object,
     }),
     AiCoreModule.register({
-      llm: {
-        provider: process.env['LLM_PROVIDER'] || 'gemini',
-        model: process.env['LLM_MODEL'] || 'gemini-2.0-flash',
-        apiKey: process.env['GEMINI_API_KEY'] || '',
-      },
+      llm: [
+        {
+          name: 'gemini-flash',
+          provider: process.env['LLM_PROVIDER'] || 'gemini',
+          model: process.env['LLM_MODEL'] || 'gemini-2.5-flash',
+          apiKey: process.env['GEMINI_API_KEY'] || '',
+        },
+      ],
       tts: {
+        name: 'elevenlabs',
         provider: process.env['TTS_PROVIDER'] || 'elevenlabs',
         model: process.env['TTS_MODEL'] || 'eleven_multilingual_v2',
         apiKey: process.env['ELEVENLABS_API_KEY'] || '',
       },
       stt: {
+        name: 'openai-whisper',
         provider: process.env['STT_PROVIDER'] || 'openai',
         model: process.env['STT_MODEL'] || 'whisper-1',
         apiKey: process.env['OPENAI_API_KEY'] || '',
       },
       realtime: {
+        name: 'openai-realtime',
         provider: process.env['REALTIME_PROVIDER'] || 'openai',
         model: process.env['REALTIME_MODEL'] || 'gpt-4o-realtime-preview',
         apiKey: process.env['OPENAI_API_KEY'] || '',

@@ -43,8 +43,9 @@ import { HealthModule } from './health/health.module';
     }),
     AiCoreModule.register({
       llm: {
+        name: 'gemini-flash',
         provider: process.env['LLM_PROVIDER'] || 'gemini',
-        model: process.env['LLM_MODEL'] || 'gemini-2.0-flash',
+        model: process.env['LLM_MODEL'] || 'gemini-2.5-flash',
         apiKey: process.env['GEMINI_API_KEY'] || '',
       },
     }),

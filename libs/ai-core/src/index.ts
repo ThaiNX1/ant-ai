@@ -11,6 +11,7 @@ export type {
   ISttAdapter,
   IRealtimeAdapter,
   AdapterConfig,
+  NamedAdapterConfig,
   AiCoreOptions,
   LlmOptions,
   TtsOptions,
@@ -25,6 +26,7 @@ export {
   TTS_ADAPTER,
   STT_ADAPTER,
   REALTIME_ADAPTER,
+  namedToken,
 } from './constants';
 
 // Adapters
