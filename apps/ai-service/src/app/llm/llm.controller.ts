@@ -1,6 +1,6 @@
-import { Controller, Post, Body, Sse } from '@nestjs/common';
+import { Controller, Inject, Post, Body, Sse } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { LlmService } from '@ai-platform/ai-core';
+import { ILlmAdapter, namedToken } from '@ai-platform/ai-core';
 import { GenerateDto } from './dto/generate.dto';
 
 interface MessageEvent {
@@ -12,11 +12,14 @@ interface MessageEvent {
 
 @Controller('llm')
 export class LlmController {
-  constructor(private readonly llmService: LlmService) {}
+  constructor(
+    @Inject(namedToken('LLM', 'gemini-flash'))
+    private readonly geminiFlash: ILlmAdapter,
+  ) {}
 
   @Post('generate')
   async generate(@Body() dto: GenerateDto): Promise<{ result: string }> {
-    const result = await this.llmService.generate(dto.prompt, dto.options);
+    const result = await this.geminiFlash.generate(dto.prompt, dto.options);
     return { result };
   }
 
@@ -26,8 +29,7 @@ export class LlmController {
     return new Observable<MessageEvent>((subscriber) => {
       (async () => {
         try {
-          const stream = this.llmService.generateStream(dto.prompt, dto.options);
-          for await (const chunk of stream) {
+          for await (const chunk of this.geminiFlash.generateStream(dto.prompt, dto.options)) {
             subscriber.next({ data: chunk });
           }
           subscriber.complete();

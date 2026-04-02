@@ -10,17 +10,18 @@ import {
 } from '@nestjs/websockets';
 import * as WebSocket from 'ws';
 import {
-  RealtimeVoiceService,
+  IRealtimeAdapter,
   AdapterFactory,
+  namedToken,
 } from '@ai-platform/ai-core';
-import type { AdapterConfig, RealtimeSessionConfig } from '@ai-platform/ai-core';
+import type { NamedAdapterConfig, RealtimeSessionConfig } from '@ai-platform/ai-core';
 
 interface ClientSession {
-  service: RealtimeVoiceService;
+  adapter: IRealtimeAdapter;
   connected: boolean;
 }
 
-export const REALTIME_CONFIG = Symbol('REALTIME_CONFIG');
+export const REALTIME_CONFIG = 'REALTIME_CONFIG';
 
 type WsClient = WebSocket & { id?: string };
 
@@ -35,8 +36,10 @@ export class RealtimeGateway
   server!: WebSocket.Server;
 
   constructor(
+    @Inject(namedToken('REALTIME', 'openai-realtime'))
+    private readonly defaultAdapter: IRealtimeAdapter,
     @Inject(REALTIME_CONFIG)
-    private readonly realtimeConfig: AdapterConfig,
+    private readonly realtimeConfig: NamedAdapterConfig,
   ) {}
 
   private getClientId(client: WsClient): string {
@@ -51,23 +54,19 @@ export class RealtimeGateway
     this.logger.log(`Client connected: ${clientId}`);
 
     try {
+      // Each client needs a fresh adapter (own WebSocket to OpenAI)
       const adapter = AdapterFactory.createRealtime(this.realtimeConfig);
-      const service = new RealtimeVoiceService(adapter);
 
       const sessionConfig: RealtimeSessionConfig = {
         model: this.realtimeConfig.model,
       };
 
-      await service.connect(sessionConfig);
-
-      this.sessions.set(clientId, { service, connected: true });
-
-      this.forwardResponses(clientId, client, service);
+      await adapter.connect(sessionConfig);
+      this.sessions.set(clientId, { adapter, connected: true });
+      this.forwardResponses(clientId, client, adapter);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
-      this.logger.error(
-        `Failed to create session for client ${clientId}: ${message}`,
-      );
+      this.logger.error(`Failed to create session for ${clientId}: ${message}`);
       client.close(1011, 'Failed to create realtime session');
     }
   }
@@ -75,7 +74,6 @@ export class RealtimeGateway
   async handleDisconnect(client: WsClient): Promise<void> {
     const clientId = this.getClientId(client);
     this.logger.log(`Client disconnected: ${clientId}`);
-
     await this.cleanupSession(clientId);
   }
 
@@ -92,28 +90,24 @@ export class RealtimeGateway
       return;
     }
 
-    session.service.feedAudio(data);
+    session.adapter.feedAudio(data);
   }
 
   private async forwardResponses(
     clientId: string,
     client: WsClient,
-    service: RealtimeVoiceService,
+    adapter: IRealtimeAdapter,
   ): Promise<void> {
     try {
-      for await (const response of service.getResponseStream()) {
+      for await (const response of adapter.getResponseStream()) {
         if (!this.sessions.has(clientId)) break;
-
-        const payload = JSON.stringify(response);
         if (client.readyState === WebSocket.OPEN) {
-          client.send(payload);
+          client.send(JSON.stringify(response));
         }
       }
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : String(error);
-      this.logger.error(
-        `Error forwarding responses for client ${clientId}: ${msg}`,
-      );
+      this.logger.error(`Error forwarding for ${clientId}: ${msg}`);
       await this.cleanupSession(clientId);
     }
   }
@@ -123,12 +117,10 @@ export class RealtimeGateway
     if (session) {
       session.connected = false;
       try {
-        await session.service.disconnect();
+        await session.adapter.disconnect();
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : String(error);
-        this.logger.error(
-          `Error disconnecting session for client ${clientId}: ${msg}`,
-        );
+        this.logger.error(`Error disconnecting ${clientId}: ${msg}`);
       }
       this.sessions.delete(clientId);
     }

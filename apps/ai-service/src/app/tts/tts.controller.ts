@@ -1,11 +1,14 @@
-import { Controller, Post, Body, Res } from '@nestjs/common';
+import { Controller, Inject, Post, Body, Res } from '@nestjs/common';
 import { FastifyReply } from 'fastify';
-import { TtsService } from '@ai-platform/ai-core';
+import { ITtsAdapter, namedToken } from '@ai-platform/ai-core';
 import { SynthesizeDto } from './dto/synthesize.dto';
 
 @Controller('tts')
 export class TtsController {
-  constructor(private readonly ttsService: TtsService) {}
+  constructor(
+    @Inject(namedToken('TTS', 'elevenlabs'))
+    private readonly elevenlabs: ITtsAdapter,
+  ) {}
 
   @Post('synthesize-stream')
   async synthesizeStream(
@@ -22,7 +25,7 @@ export class TtsController {
       ...(dto.voiceId ? { voiceId: dto.voiceId } : {}),
     };
 
-    const stream = this.ttsService.streamSynthesize(
+    const stream = this.elevenlabs.streamSynthesize(
       dto.text,
       Object.keys(ttsOptions).length > 0 ? ttsOptions : undefined,
     );

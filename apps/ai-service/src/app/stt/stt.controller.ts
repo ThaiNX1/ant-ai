@@ -1,13 +1,16 @@
-import { Controller, Post, Body } from '@nestjs/common';
-import { SttService } from '@ai-platform/ai-core';
+import { Controller, Inject, Post, Body } from '@nestjs/common';
+import { ISttAdapter, namedToken } from '@ai-platform/ai-core';
 
 @Controller('stt')
 export class SttController {
-  constructor(private readonly sttService: SttService) {}
+  constructor(
+    @Inject(namedToken('STT', 'openai-whisper'))
+    private readonly whisper: ISttAdapter,
+  ) {}
 
   @Post('transcribe')
   async transcribe(@Body() audioBuffer: Buffer): Promise<{ text: string }> {
-    const text = await this.sttService.transcribeAudio(audioBuffer);
+    const text = await this.whisper.transcribeAudio(audioBuffer);
     return { text };
   }
 }
