@@ -1,20 +1,9 @@
 // Module
-export { DatabaseModule } from './database.module';
+export { DatabaseModule, DatabaseModuleOptions } from './database.module';
 
-// Service
-export { DatabaseService } from './database.service';
-
-// Entities
-export { Student } from './entities/student.entity';
-export { Lesson } from './entities/lesson.entity';
-export { LearningSession } from './entities/learning-session.entity';
-export { CompanionSession } from './entities/companion-session.entity';
-
-// Repositories
-export { StudentRepository } from './repositories/student.repository';
-export { LessonRepository } from './repositories/lesson.repository';
-export { LearningSessionRepository } from './repositories/learning-session.repository';
-export { CompanionSessionRepository } from './repositories/companion-session.repository';
+// Base classes
+export { BaseRepository } from './repositories/base.repository';
+export { BaseService } from './services/base.service';
 
 // Interfaces
 export { DatabaseOptions } from './interfaces/database-options.interface';

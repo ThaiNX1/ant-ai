@@ -1,21 +1,31 @@
-import { DynamicModule, Module } from '@nestjs/common';
+import { DynamicModule, Module, Provider, Type } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseOptions } from './interfaces/database-options.interface';
-import { Student } from './entities/student.entity';
-import { Lesson } from './entities/lesson.entity';
-import { LearningSession } from './entities/learning-session.entity';
-import { CompanionSession } from './entities/companion-session.entity';
-import { StudentRepository } from './repositories/student.repository';
-import { LessonRepository } from './repositories/lesson.repository';
-import { LearningSessionRepository } from './repositories/learning-session.repository';
-import { CompanionSessionRepository } from './repositories/companion-session.repository';
-import { DatabaseService } from './database.service';
 
-const entities = [Student, Lesson, LearningSession, CompanionSession];
+export interface DatabaseModuleOptions extends DatabaseOptions {
+  /** Entity classes to register with TypeORM */
+  entities?: Type[];
+  /** Additional providers (repositories, services) to register and export */
+  providers?: Provider[];
+}
 
 @Module({})
 export class DatabaseModule {
-  static register(options: DatabaseOptions): DynamicModule {
+  /**
+   * Register the database module with connection options.
+   * Entities and domain-specific providers are passed in by the consuming app.
+   *
+   * @example
+   * DatabaseModule.register({
+   *   host: 'localhost', port: 5432, username: 'postgres', password: '', database: 'mydb',
+   *   entities: [Student, Lesson],
+   *   providers: [StudentRepository, LessonRepository],
+   * })
+   */
+  static register(options: DatabaseModuleOptions): DynamicModule {
+    const entities = options.entities ?? [];
+    const extraProviders = options.providers ?? [];
+
     return {
       module: DatabaseModule,
       imports: [
@@ -29,22 +39,10 @@ export class DatabaseModule {
           entities,
           synchronize: false,
         }),
-        TypeOrmModule.forFeature(entities),
+        ...(entities.length > 0 ? [TypeOrmModule.forFeature(entities)] : []),
       ],
-      providers: [
-        DatabaseService,
-        StudentRepository,
-        LessonRepository,
-        LearningSessionRepository,
-        CompanionSessionRepository,
-      ],
-      exports: [
-        DatabaseService,
-        StudentRepository,
-        LessonRepository,
-        LearningSessionRepository,
-        CompanionSessionRepository,
-      ],
+      providers: [...extraProviders],
+      exports: [TypeOrmModule, ...extraProviders],
     };
   }
 }

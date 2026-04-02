@@ -2,26 +2,18 @@ import { GeminiLlmAdapter } from './gemini-llm.adapter';
 import { AdapterError } from '../errors/adapter.error';
 import { AdapterConfig } from '../interfaces/ai-core-options.interface';
 
-// Mock @google/generative-ai
-jest.mock('@google/generative-ai', () => {
-  const mockGenerateContent = jest.fn();
-  const mockGenerateContentStream = jest.fn();
-  return {
-    GoogleGenerativeAI: jest.fn().mockImplementation(() => ({
-      getGenerativeModel: jest.fn().mockReturnValue({
-        generateContent: mockGenerateContent,
-        generateContentStream: mockGenerateContentStream,
-      }),
-    })),
-    __mockGenerateContent: mockGenerateContent,
-    __mockGenerateContentStream: mockGenerateContentStream,
-  };
-});
+// Mock @google/genai
+const mockGenerateContent = jest.fn();
+const mockGenerateContentStream = jest.fn();
 
-const {
-  __mockGenerateContent: mockGenerateContent,
-  __mockGenerateContentStream: mockGenerateContentStream,
-} = jest.requireMock('@google/generative-ai');
+jest.mock('@google/genai', () => ({
+  GoogleGenAI: jest.fn().mockImplementation(() => ({
+    models: {
+      generateContent: mockGenerateContent,
+      generateContentStream: mockGenerateContentStream,
+    },
+  })),
+}));
 
 describe('GeminiLlmAdapter', () => {
   const config: AdapterConfig = {
@@ -38,11 +30,31 @@ describe('GeminiLlmAdapter', () => {
 
   describe('generate', () => {
     it('should return generated text', async () => {
-      mockGenerateContent.mockResolvedValue({
-        response: { text: () => 'Hello world' },
-      });
+      mockGenerateContent.mockResolvedValue({ text: 'Hello world' });
       const result = await adapter.generate('Say hello');
       expect(result).toBe('Hello world');
+    });
+
+    it('should pass model and config to SDK', async () => {
+      mockGenerateContent.mockResolvedValue({ text: 'ok' });
+      await adapter.generate('test', { temperature: 0.7, maxTokens: 100 });
+
+      expect(mockGenerateContent).toHaveBeenCalledWith({
+        model: 'gemini-pro',
+        contents: 'test',
+        config: {
+          temperature: 0.7,
+          maxOutputTokens: 100,
+          topP: undefined,
+          stopSequences: undefined,
+        },
+      });
+    });
+
+    it('should return empty string when text is null', async () => {
+      mockGenerateContent.mockResolvedValue({ text: null });
+      const result = await adapter.generate('test');
+      expect(result).toBe('');
     });
 
     it('should throw AdapterError on API failure', async () => {
@@ -60,15 +72,31 @@ describe('GeminiLlmAdapter', () => {
 
   describe('generateStream', () => {
     it('should yield text chunks', async () => {
-      const chunks = [{ text: () => 'Hello' }, { text: () => ' world' }];
-      mockGenerateContentStream.mockResolvedValue({
-        stream: (async function* () {
-          for (const c of chunks) yield c;
+      mockGenerateContentStream.mockResolvedValue(
+        (async function* () {
+          yield { text: 'Hello' };
+          yield { text: ' world' };
         })(),
-      });
+      );
 
       const results: string[] = [];
       for await (const chunk of adapter.generateStream('Say hello')) {
+        results.push(chunk);
+      }
+      expect(results).toEqual(['Hello', ' world']);
+    });
+
+    it('should skip empty text chunks', async () => {
+      mockGenerateContentStream.mockResolvedValue(
+        (async function* () {
+          yield { text: 'Hello' };
+          yield { text: '' };
+          yield { text: ' world' };
+        })(),
+      );
+
+      const results: string[] = [];
+      for await (const chunk of adapter.generateStream('test')) {
         results.push(chunk);
       }
       expect(results).toEqual(['Hello', ' world']);

@@ -32,95 +32,269 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "AI_PLATFORM_PLAN.md",
-        "hash": "12164562664728788739"
+        "file": "package.json",
+        "hash": "10566560534130859841"
       },
       {
-        "file": "dist/apps/ai-service/package.json",
-        "hash": "10526533053435831492"
-      },
-      {
-        "file": "libs/.gitkeep",
-        "hash": "18164486227812464591"
+        "file": ".kiro/specs/ai-platform-monorepo/.config.kiro",
+        "hash": "17319139342023884562"
       },
       {
         "file": ".kiro/specs/ai-platform-monorepo/requirements.md",
         "hash": "15222662905579709257"
       },
       {
+        "file": "tsconfig.base.json",
+        "hash": "6993912133419432401"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "18315213394107149450"
+      },
+      {
         "file": "apps/.gitkeep",
         "hash": "18164486227812464591"
       },
       {
-        "file": "dist/apps/customer-service/main.js",
-        "hash": "9303382892934166463"
-      },
-      {
-        "file": ".kiro/specs/ai-platform-monorepo/design.md",
-        "hash": "5300357805374866849"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "14145419060237914883"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "7473220183190921152"
-      },
-      {
-        "file": "dist/apps/ai-service/package-lock.json",
-        "hash": "4934093817143198239"
-      },
-      {
-        "file": "nx.json",
-        "hash": "2670440413055023305"
-      },
-      {
-        "file": "dist/apps/ai-service/main.js",
-        "hash": "1500000163146027343"
-      },
-      {
-        "file": "dist/apps/customer-service/package.json",
-        "hash": "11647020782243839015"
-      },
-      {
-        "file": "dist/apps/customer-service/package-lock.json",
-        "hash": "18220218479552940320"
-      },
-      {
-        "file": "eslint.config.js",
-        "hash": "4556418860436108960"
-      },
-      {
-        "file": ".kiro/specs/ai-platform-monorepo/tasks.md",
-        "hash": "18372834711684984465"
+        "file": "AI_PLATFORM_PLAN.md",
+        "hash": "12164562664728788739"
       },
       {
         "file": ".dockerignore",
         "hash": "5848320339126807921"
       },
       {
+        "file": ".kiro/specs/ai-platform-monorepo/tasks.md",
+        "hash": "18372834711684984465"
+      },
+      {
+        "file": ".kiro/specs/ai-platform-monorepo/design.md",
+        "hash": "5300357805374866849"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "7473220183190921152"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "14145419060237914883"
+      },
+      {
+        "file": "nx.json",
+        "hash": "2670440413055023305"
+      },
+      {
+        "file": "eslint.config.js",
+        "hash": "4556418860436108960"
+      },
+      {
+        "file": "libs/.gitkeep",
+        "hash": "18164486227812464591"
+      },
+      {
         "file": ".gitignore",
-        "hash": "13404745306227114823"
-      },
-      {
-        "file": "package-lock.json",
-        "hash": "10241364337548602356"
-      },
-      {
-        "file": "tsconfig.base.json",
-        "hash": "6993912133419432401"
-      },
-      {
-        "file": "package.json",
-        "hash": "14372092393608495270"
-      },
-      {
-        "file": ".kiro/specs/ai-platform-monorepo/.config.kiro",
-        "hash": "17319139342023884562"
+        "hash": "525150974345236902"
       }
     ],
     "projectFileMap": {
+      "voice-streaming": [
+        {
+          "file": "apps/voice-streaming/.env.example",
+          "hash": "624223846492800993"
+        },
+        {
+          "file": "apps/voice-streaming/Dockerfile",
+          "hash": "17611902876240505040"
+        },
+        {
+          "file": "apps/voice-streaming/__init__.py",
+          "hash": "3178080890966672254"
+        },
+        {
+          "file": "apps/voice-streaming/__pycache__/__init__.cpython-314.pyc",
+          "hash": "4904310342652307816"
+        },
+        {
+          "file": "apps/voice-streaming/__pycache__/conftest.cpython-314-pytest-9.0.2.pyc",
+          "hash": "11325517036472066374"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/__init__.py",
+          "hash": "13125726493866661658"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/__pycache__/__init__.cpython-314.pyc",
+          "hash": "12326934261856156976"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/__pycache__/ai_service_client.cpython-314.pyc",
+          "hash": "2813614418995839764"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/__pycache__/circuit_breaker.cpython-314.pyc",
+          "hash": "1526034290365404278"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/__pycache__/llm_client.cpython-314.pyc",
+          "hash": "2420932933453794173"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/__pycache__/realtime_client.cpython-314.pyc",
+          "hash": "5103533427869591466"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/__pycache__/tts_client.cpython-314.pyc",
+          "hash": "11132757472459302408"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/ai_service_client.py",
+          "hash": "14887495209472716889"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/circuit_breaker.py",
+          "hash": "8916983995469275468"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/llm_client.py",
+          "hash": "16502083441964876370"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/realtime_client.py",
+          "hash": "10592704815548579413"
+        },
+        {
+          "file": "apps/voice-streaming/ai_client/tts_client.py",
+          "hash": "11796091033675835014"
+        },
+        {
+          "file": "apps/voice-streaming/conftest.py",
+          "hash": "53398043744591738"
+        },
+        {
+          "file": "apps/voice-streaming/core/__init__.py",
+          "hash": "16478017843143738224"
+        },
+        {
+          "file": "apps/voice-streaming/project.json",
+          "hash": "4551408566104599458"
+        },
+        {
+          "file": "apps/voice-streaming/pytest.ini",
+          "hash": "15913846469853366060"
+        },
+        {
+          "file": "apps/voice-streaming/requirements.txt",
+          "hash": "2126799200620279080"
+        },
+        {
+          "file": "apps/voice-streaming/rtp_handler/__init__.py",
+          "hash": "13909451141440788645"
+        },
+        {
+          "file": "apps/voice-streaming/services/__init__.py",
+          "hash": "4769758844918425142"
+        },
+        {
+          "file": "apps/voice-streaming/services/__pycache__/__init__.cpython-314.pyc",
+          "hash": "4574518266724323829"
+        },
+        {
+          "file": "apps/voice-streaming/services/__pycache__/llm_service.cpython-314.pyc",
+          "hash": "10776355408893859282"
+        },
+        {
+          "file": "apps/voice-streaming/services/__pycache__/realtime_service.cpython-314.pyc",
+          "hash": "736481138568859006"
+        },
+        {
+          "file": "apps/voice-streaming/services/__pycache__/tts_service.cpython-314.pyc",
+          "hash": "11710796337696816993"
+        },
+        {
+          "file": "apps/voice-streaming/services/llm_service.py",
+          "hash": "8204008941215649535"
+        },
+        {
+          "file": "apps/voice-streaming/services/realtime_service.py",
+          "hash": "12308867558562727695"
+        },
+        {
+          "file": "apps/voice-streaming/services/tts_service.py",
+          "hash": "10869512524136235615"
+        },
+        {
+          "file": "apps/voice-streaming/tests/__init__.py",
+          "hash": "2939290850892433990"
+        },
+        {
+          "file": "apps/voice-streaming/tests/__pycache__/__init__.cpython-314.pyc",
+          "hash": "10368002538083536088"
+        },
+        {
+          "file": "apps/voice-streaming/tests/__pycache__/test_ai_service_client.cpython-314-pytest-9.0.2.pyc",
+          "hash": "8258601309089669732"
+        },
+        {
+          "file": "apps/voice-streaming/tests/__pycache__/test_circuit_breaker.cpython-314-pytest-9.0.2.pyc",
+          "hash": "4622886621541216528"
+        },
+        {
+          "file": "apps/voice-streaming/tests/__pycache__/test_llm_client.cpython-314-pytest-9.0.2.pyc",
+          "hash": "2677648854733707033"
+        },
+        {
+          "file": "apps/voice-streaming/tests/__pycache__/test_llm_service.cpython-314-pytest-9.0.2.pyc",
+          "hash": "18024408982039615626"
+        },
+        {
+          "file": "apps/voice-streaming/tests/__pycache__/test_realtime_client.cpython-314-pytest-9.0.2.pyc",
+          "hash": "9321985544002426530"
+        },
+        {
+          "file": "apps/voice-streaming/tests/__pycache__/test_realtime_service.cpython-314-pytest-9.0.2.pyc",
+          "hash": "8666022934186849458"
+        },
+        {
+          "file": "apps/voice-streaming/tests/__pycache__/test_tts_client.cpython-314-pytest-9.0.2.pyc",
+          "hash": "3562470507885317985"
+        },
+        {
+          "file": "apps/voice-streaming/tests/__pycache__/test_tts_service.cpython-314-pytest-9.0.2.pyc",
+          "hash": "2077900493627712641"
+        },
+        {
+          "file": "apps/voice-streaming/tests/test_ai_service_client.py",
+          "hash": "7214167935306598616"
+        },
+        {
+          "file": "apps/voice-streaming/tests/test_circuit_breaker.py",
+          "hash": "15704461548530531170"
+        },
+        {
+          "file": "apps/voice-streaming/tests/test_llm_client.py",
+          "hash": "11936535756636075124"
+        },
+        {
+          "file": "apps/voice-streaming/tests/test_llm_service.py",
+          "hash": "16016131217280422259"
+        },
+        {
+          "file": "apps/voice-streaming/tests/test_realtime_client.py",
+          "hash": "10009890336656531857"
+        },
+        {
+          "file": "apps/voice-streaming/tests/test_realtime_service.py",
+          "hash": "7161365102992879560"
+        },
+        {
+          "file": "apps/voice-streaming/tests/test_tts_client.py",
+          "hash": "11595083951413414296"
+        },
+        {
+          "file": "apps/voice-streaming/tests/test_tts_service.py",
+          "hash": "7181050486207362479"
+        }
+      ],
       "backend-client": [
         {
           "file": "libs/backend-client/jest.config.ts",
@@ -215,7 +389,227 @@
           "hash": "11194536110028348959"
         }
       ],
+      "ai-core": [
+        {
+          "file": "libs/ai-core/jest.config.ts",
+          "hash": "6978598442921810247"
+        },
+        {
+          "file": "libs/ai-core/project.json",
+          "hash": "2878670554634346080"
+        },
+        {
+          "file": "libs/ai-core/src/adapters/adapter.factory.spec.ts",
+          "hash": "16444755598097497714"
+        },
+        {
+          "file": "libs/ai-core/src/adapters/adapter.factory.ts",
+          "hash": "1100252070270078845"
+        },
+        {
+          "file": "libs/ai-core/src/adapters/elevenlabs-tts.adapter.spec.ts",
+          "hash": "4796871130948558349"
+        },
+        {
+          "file": "libs/ai-core/src/adapters/elevenlabs-tts.adapter.ts",
+          "hash": "3691561751375757703",
+          "deps": [
+            "npm:elevenlabs"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/adapters/gemini-llm.adapter.spec.ts",
+          "hash": "14035341865290605115"
+        },
+        {
+          "file": "libs/ai-core/src/adapters/gemini-llm.adapter.ts",
+          "hash": "16799530602968306013",
+          "deps": [
+            "npm:@google/genai"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/adapters/index.ts",
+          "hash": "17068361484678926137"
+        },
+        {
+          "file": "libs/ai-core/src/adapters/openai-realtime.adapter.spec.ts",
+          "hash": "13007324524046322432"
+        },
+        {
+          "file": "libs/ai-core/src/adapters/openai-realtime.adapter.ts",
+          "hash": "13326105245555498845",
+          "deps": [
+            "npm:ws"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/adapters/openai-stt.adapter.spec.ts",
+          "hash": "12104186335410907362"
+        },
+        {
+          "file": "libs/ai-core/src/adapters/openai-stt.adapter.ts",
+          "hash": "9694314518102338102",
+          "deps": [
+            "npm:openai"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/ai-core.module.spec.ts",
+          "hash": "16210356404949777293",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/ai-core.module.ts",
+          "hash": "4512823861198623396",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/constants/index.ts",
+          "hash": "652380682361686223"
+        },
+        {
+          "file": "libs/ai-core/src/constants/injection-tokens.ts",
+          "hash": "11396801574102945544"
+        },
+        {
+          "file": "libs/ai-core/src/errors/adapter.error.spec.ts",
+          "hash": "15284937198793385396"
+        },
+        {
+          "file": "libs/ai-core/src/errors/adapter.error.ts",
+          "hash": "580660807651960532"
+        },
+        {
+          "file": "libs/ai-core/src/errors/index.ts",
+          "hash": "13204815751910308862"
+        },
+        {
+          "file": "libs/ai-core/src/index.ts",
+          "hash": "5570631375620176952"
+        },
+        {
+          "file": "libs/ai-core/src/interfaces/ai-core-options.interface.ts",
+          "hash": "14044645511169129141"
+        },
+        {
+          "file": "libs/ai-core/src/interfaces/index.ts",
+          "hash": "10073665689990808226"
+        },
+        {
+          "file": "libs/ai-core/src/interfaces/llm-options.interface.ts",
+          "hash": "17950395090206900305"
+        },
+        {
+          "file": "libs/ai-core/src/interfaces/llm.interface.ts",
+          "hash": "1120632389085527596"
+        },
+        {
+          "file": "libs/ai-core/src/interfaces/realtime-types.interface.ts",
+          "hash": "17636642452826597867"
+        },
+        {
+          "file": "libs/ai-core/src/interfaces/realtime.interface.ts",
+          "hash": "94147600155848856"
+        },
+        {
+          "file": "libs/ai-core/src/interfaces/stt-options.interface.ts",
+          "hash": "11054622604540936768"
+        },
+        {
+          "file": "libs/ai-core/src/interfaces/stt.interface.ts",
+          "hash": "8272076342672437011"
+        },
+        {
+          "file": "libs/ai-core/src/interfaces/tts-options.interface.ts",
+          "hash": "15014648693931118605"
+        },
+        {
+          "file": "libs/ai-core/src/interfaces/tts.interface.ts",
+          "hash": "9388347176048531936"
+        },
+        {
+          "file": "libs/ai-core/src/services/index.ts",
+          "hash": "3275616425538569074"
+        },
+        {
+          "file": "libs/ai-core/src/services/llm.service.ts",
+          "hash": "17104295996947341176",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/services/realtime-voice.service.ts",
+          "hash": "12359438632235284907",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/services/stt.service.ts",
+          "hash": "8859765966877773135",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/services/text-to-voice.service.spec.ts",
+          "hash": "10044070131968784789",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/services/text-to-voice.service.ts",
+          "hash": "2924956903938486298",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/services/tts.service.ts",
+          "hash": "17119092767718973402",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/services/voice-to-voice.service.spec.ts",
+          "hash": "6714986858809917693",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "libs/ai-core/src/services/voice-to-voice.service.ts",
+          "hash": "5093388831029638166",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/ai-core/tsconfig.json",
+          "hash": "9814814592540905143"
+        },
+        {
+          "file": "libs/ai-core/tsconfig.lib.json",
+          "hash": "17512648156706774563"
+        },
+        {
+          "file": "libs/ai-core/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
       "customer-service": [
+        {
+          "file": "apps/customer-service/.env.example",
+          "hash": "13243327152751813434"
+        },
         {
           "file": "apps/customer-service/Dockerfile",
           "hash": "13477928143791523668"
@@ -445,6 +839,66 @@
           ]
         }
       ],
+      "database": [
+        {
+          "file": "libs/database/jest.config.ts",
+          "hash": "821589908681538961"
+        },
+        {
+          "file": "libs/database/project.json",
+          "hash": "3200294423802764915"
+        },
+        {
+          "file": "libs/database/src/database.module.ts",
+          "hash": "1277437224827567160",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/typeorm"
+          ]
+        },
+        {
+          "file": "libs/database/src/index.ts",
+          "hash": "15863545448565687906"
+        },
+        {
+          "file": "libs/database/src/interfaces/database-options.interface.ts",
+          "hash": "12746228288843722900"
+        },
+        {
+          "file": "libs/database/src/interfaces/index.ts",
+          "hash": "7112758760276242555"
+        },
+        {
+          "file": "libs/database/src/repositories/base.repository.ts",
+          "hash": "2396007612305811058",
+          "deps": [
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "libs/database/src/repositories/index.ts",
+          "hash": "4018555154668924086"
+        },
+        {
+          "file": "libs/database/src/services/base.service.ts",
+          "hash": "14832515117592031253",
+          "deps": [
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "libs/database/tsconfig.json",
+          "hash": "9814814592540905143"
+        },
+        {
+          "file": "libs/database/tsconfig.lib.json",
+          "hash": "17512648156706774563"
+        },
+        {
+          "file": "libs/database/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
       "common": [
         {
           "file": "libs/common/jest.config.ts",
@@ -514,223 +968,11 @@
           "hash": "11194536110028348959"
         }
       ],
-      "ai-core": [
-        {
-          "file": "libs/ai-core/jest.config.ts",
-          "hash": "6978598442921810247"
-        },
-        {
-          "file": "libs/ai-core/project.json",
-          "hash": "2878670554634346080"
-        },
-        {
-          "file": "libs/ai-core/src/adapters/adapter.factory.spec.ts",
-          "hash": "16444755598097497714"
-        },
-        {
-          "file": "libs/ai-core/src/adapters/adapter.factory.ts",
-          "hash": "1100252070270078845"
-        },
-        {
-          "file": "libs/ai-core/src/adapters/elevenlabs-tts.adapter.spec.ts",
-          "hash": "4796871130948558349"
-        },
-        {
-          "file": "libs/ai-core/src/adapters/elevenlabs-tts.adapter.ts",
-          "hash": "3691561751375757703",
-          "deps": [
-            "npm:elevenlabs"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/adapters/gemini-llm.adapter.spec.ts",
-          "hash": "11309396345716257087"
-        },
-        {
-          "file": "libs/ai-core/src/adapters/gemini-llm.adapter.ts",
-          "hash": "658255032891521647",
-          "deps": [
-            "npm:@google/generative-ai"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/adapters/index.ts",
-          "hash": "17068361484678926137"
-        },
-        {
-          "file": "libs/ai-core/src/adapters/openai-realtime.adapter.spec.ts",
-          "hash": "13007324524046322432"
-        },
-        {
-          "file": "libs/ai-core/src/adapters/openai-realtime.adapter.ts",
-          "hash": "13326105245555498845",
-          "deps": [
-            "npm:ws"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/adapters/openai-stt.adapter.spec.ts",
-          "hash": "12104186335410907362"
-        },
-        {
-          "file": "libs/ai-core/src/adapters/openai-stt.adapter.ts",
-          "hash": "9694314518102338102",
-          "deps": [
-            "npm:openai"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/ai-core.module.spec.ts",
-          "hash": "16210356404949777293",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/ai-core.module.ts",
-          "hash": "4512823861198623396",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/constants/index.ts",
-          "hash": "652380682361686223"
-        },
-        {
-          "file": "libs/ai-core/src/constants/injection-tokens.ts",
-          "hash": "11396801574102945544"
-        },
-        {
-          "file": "libs/ai-core/src/errors/adapter.error.spec.ts",
-          "hash": "15284937198793385396"
-        },
-        {
-          "file": "libs/ai-core/src/errors/adapter.error.ts",
-          "hash": "580660807651960532"
-        },
-        {
-          "file": "libs/ai-core/src/errors/index.ts",
-          "hash": "13204815751910308862"
-        },
-        {
-          "file": "libs/ai-core/src/index.ts",
-          "hash": "5570631375620176952"
-        },
-        {
-          "file": "libs/ai-core/src/interfaces/ai-core-options.interface.ts",
-          "hash": "14044645511169129141"
-        },
-        {
-          "file": "libs/ai-core/src/interfaces/index.ts",
-          "hash": "10073665689990808226"
-        },
-        {
-          "file": "libs/ai-core/src/interfaces/llm-options.interface.ts",
-          "hash": "17950395090206900305"
-        },
-        {
-          "file": "libs/ai-core/src/interfaces/llm.interface.ts",
-          "hash": "1120632389085527596"
-        },
-        {
-          "file": "libs/ai-core/src/interfaces/realtime-types.interface.ts",
-          "hash": "17636642452826597867"
-        },
-        {
-          "file": "libs/ai-core/src/interfaces/realtime.interface.ts",
-          "hash": "94147600155848856"
-        },
-        {
-          "file": "libs/ai-core/src/interfaces/stt-options.interface.ts",
-          "hash": "11054622604540936768"
-        },
-        {
-          "file": "libs/ai-core/src/interfaces/stt.interface.ts",
-          "hash": "8272076342672437011"
-        },
-        {
-          "file": "libs/ai-core/src/interfaces/tts-options.interface.ts",
-          "hash": "15014648693931118605"
-        },
-        {
-          "file": "libs/ai-core/src/interfaces/tts.interface.ts",
-          "hash": "9388347176048531936"
-        },
-        {
-          "file": "libs/ai-core/src/services/index.ts",
-          "hash": "3275616425538569074"
-        },
-        {
-          "file": "libs/ai-core/src/services/llm.service.ts",
-          "hash": "17104295996947341176",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/services/realtime-voice.service.ts",
-          "hash": "12359438632235284907",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/services/stt.service.ts",
-          "hash": "8859765966877773135",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/services/text-to-voice.service.spec.ts",
-          "hash": "10044070131968784789",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/services/text-to-voice.service.ts",
-          "hash": "2924956903938486298",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/services/tts.service.ts",
-          "hash": "17119092767718973402",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/services/voice-to-voice.service.spec.ts",
-          "hash": "6714986858809917693",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "libs/ai-core/src/services/voice-to-voice.service.ts",
-          "hash": "5093388831029638166",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/ai-core/tsconfig.json",
-          "hash": "9814814592540905143"
-        },
-        {
-          "file": "libs/ai-core/tsconfig.lib.json",
-          "hash": "17512648156706774563"
-        },
-        {
-          "file": "libs/ai-core/tsconfig.spec.json",
-          "hash": "11194536110028348959"
-        }
-      ],
       "ai-service": [
+        {
+          "file": "apps/ai-service/.env.example",
+          "hash": "5215990873032627035"
+        },
         {
           "file": "apps/ai-service/Dockerfile",
           "hash": "5367696913754120620"
@@ -960,329 +1202,6 @@
           "deps": [
             "npm:@nx/webpack"
           ]
-        }
-      ],
-      "database": [
-        {
-          "file": "libs/database/jest.config.ts",
-          "hash": "821589908681538961"
-        },
-        {
-          "file": "libs/database/project.json",
-          "hash": "3200294423802764915"
-        },
-        {
-          "file": "libs/database/src/database.module.spec.ts",
-          "hash": "12367042907331562309"
-        },
-        {
-          "file": "libs/database/src/database.module.ts",
-          "hash": "8274809561119323958",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/typeorm"
-          ]
-        },
-        {
-          "file": "libs/database/src/database.service.spec.ts",
-          "hash": "5151510308716445815"
-        },
-        {
-          "file": "libs/database/src/database.service.ts",
-          "hash": "14525635637602431967",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/database/src/entities/companion-session.entity.ts",
-          "hash": "6647514737782706780",
-          "deps": [
-            "npm:typeorm"
-          ]
-        },
-        {
-          "file": "libs/database/src/entities/index.ts",
-          "hash": "17261794601483765225"
-        },
-        {
-          "file": "libs/database/src/entities/learning-session.entity.ts",
-          "hash": "2299308416075203513",
-          "deps": [
-            "npm:typeorm"
-          ]
-        },
-        {
-          "file": "libs/database/src/entities/lesson.entity.ts",
-          "hash": "1073532660611009389",
-          "deps": [
-            "npm:typeorm"
-          ]
-        },
-        {
-          "file": "libs/database/src/entities/student.entity.ts",
-          "hash": "912063133425183003",
-          "deps": [
-            "npm:typeorm"
-          ]
-        },
-        {
-          "file": "libs/database/src/index.ts",
-          "hash": "12832955333689138764"
-        },
-        {
-          "file": "libs/database/src/interfaces/database-options.interface.ts",
-          "hash": "12746228288843722900"
-        },
-        {
-          "file": "libs/database/src/interfaces/index.ts",
-          "hash": "7112758760276242555"
-        },
-        {
-          "file": "libs/database/src/repositories/companion-session.repository.ts",
-          "hash": "2583119906540744338",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/typeorm",
-            "npm:typeorm"
-          ]
-        },
-        {
-          "file": "libs/database/src/repositories/index.ts",
-          "hash": "12631936214024952864"
-        },
-        {
-          "file": "libs/database/src/repositories/learning-session.repository.ts",
-          "hash": "15285935130426917675",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/typeorm",
-            "npm:typeorm"
-          ]
-        },
-        {
-          "file": "libs/database/src/repositories/lesson.repository.ts",
-          "hash": "4127089340652028668",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/typeorm",
-            "npm:typeorm"
-          ]
-        },
-        {
-          "file": "libs/database/src/repositories/student.repository.ts",
-          "hash": "2068471675455120310",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/typeorm",
-            "npm:typeorm"
-          ]
-        },
-        {
-          "file": "libs/database/tsconfig.json",
-          "hash": "9814814592540905143"
-        },
-        {
-          "file": "libs/database/tsconfig.lib.json",
-          "hash": "17512648156706774563"
-        },
-        {
-          "file": "libs/database/tsconfig.spec.json",
-          "hash": "11194536110028348959"
-        }
-      ],
-      "voice-streaming": [
-        {
-          "file": "apps/voice-streaming/Dockerfile",
-          "hash": "17611902876240505040"
-        },
-        {
-          "file": "apps/voice-streaming/__init__.py",
-          "hash": "3178080890966672254"
-        },
-        {
-          "file": "apps/voice-streaming/__pycache__/__init__.cpython-314.pyc",
-          "hash": "4904310342652307816"
-        },
-        {
-          "file": "apps/voice-streaming/__pycache__/conftest.cpython-314-pytest-9.0.2.pyc",
-          "hash": "11325517036472066374"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/__init__.py",
-          "hash": "13125726493866661658"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/__pycache__/__init__.cpython-314.pyc",
-          "hash": "12326934261856156976"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/__pycache__/ai_service_client.cpython-314.pyc",
-          "hash": "2813614418995839764"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/__pycache__/circuit_breaker.cpython-314.pyc",
-          "hash": "1526034290365404278"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/__pycache__/llm_client.cpython-314.pyc",
-          "hash": "2420932933453794173"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/__pycache__/realtime_client.cpython-314.pyc",
-          "hash": "5103533427869591466"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/__pycache__/tts_client.cpython-314.pyc",
-          "hash": "11132757472459302408"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/ai_service_client.py",
-          "hash": "14887495209472716889"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/circuit_breaker.py",
-          "hash": "8916983995469275468"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/llm_client.py",
-          "hash": "16502083441964876370"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/realtime_client.py",
-          "hash": "10592704815548579413"
-        },
-        {
-          "file": "apps/voice-streaming/ai_client/tts_client.py",
-          "hash": "11796091033675835014"
-        },
-        {
-          "file": "apps/voice-streaming/conftest.py",
-          "hash": "53398043744591738"
-        },
-        {
-          "file": "apps/voice-streaming/core/__init__.py",
-          "hash": "16478017843143738224"
-        },
-        {
-          "file": "apps/voice-streaming/project.json",
-          "hash": "4551408566104599458"
-        },
-        {
-          "file": "apps/voice-streaming/pytest.ini",
-          "hash": "15913846469853366060"
-        },
-        {
-          "file": "apps/voice-streaming/requirements.txt",
-          "hash": "2126799200620279080"
-        },
-        {
-          "file": "apps/voice-streaming/rtp_handler/__init__.py",
-          "hash": "13909451141440788645"
-        },
-        {
-          "file": "apps/voice-streaming/services/__init__.py",
-          "hash": "4769758844918425142"
-        },
-        {
-          "file": "apps/voice-streaming/services/__pycache__/__init__.cpython-314.pyc",
-          "hash": "4574518266724323829"
-        },
-        {
-          "file": "apps/voice-streaming/services/__pycache__/llm_service.cpython-314.pyc",
-          "hash": "10776355408893859282"
-        },
-        {
-          "file": "apps/voice-streaming/services/__pycache__/realtime_service.cpython-314.pyc",
-          "hash": "736481138568859006"
-        },
-        {
-          "file": "apps/voice-streaming/services/__pycache__/tts_service.cpython-314.pyc",
-          "hash": "11710796337696816993"
-        },
-        {
-          "file": "apps/voice-streaming/services/llm_service.py",
-          "hash": "8204008941215649535"
-        },
-        {
-          "file": "apps/voice-streaming/services/realtime_service.py",
-          "hash": "12308867558562727695"
-        },
-        {
-          "file": "apps/voice-streaming/services/tts_service.py",
-          "hash": "10869512524136235615"
-        },
-        {
-          "file": "apps/voice-streaming/tests/__init__.py",
-          "hash": "2939290850892433990"
-        },
-        {
-          "file": "apps/voice-streaming/tests/__pycache__/__init__.cpython-314.pyc",
-          "hash": "10368002538083536088"
-        },
-        {
-          "file": "apps/voice-streaming/tests/__pycache__/test_ai_service_client.cpython-314-pytest-9.0.2.pyc",
-          "hash": "8258601309089669732"
-        },
-        {
-          "file": "apps/voice-streaming/tests/__pycache__/test_circuit_breaker.cpython-314-pytest-9.0.2.pyc",
-          "hash": "4622886621541216528"
-        },
-        {
-          "file": "apps/voice-streaming/tests/__pycache__/test_llm_client.cpython-314-pytest-9.0.2.pyc",
-          "hash": "2677648854733707033"
-        },
-        {
-          "file": "apps/voice-streaming/tests/__pycache__/test_llm_service.cpython-314-pytest-9.0.2.pyc",
-          "hash": "18024408982039615626"
-        },
-        {
-          "file": "apps/voice-streaming/tests/__pycache__/test_realtime_client.cpython-314-pytest-9.0.2.pyc",
-          "hash": "9321985544002426530"
-        },
-        {
-          "file": "apps/voice-streaming/tests/__pycache__/test_realtime_service.cpython-314-pytest-9.0.2.pyc",
-          "hash": "8666022934186849458"
-        },
-        {
-          "file": "apps/voice-streaming/tests/__pycache__/test_tts_client.cpython-314-pytest-9.0.2.pyc",
-          "hash": "3562470507885317985"
-        },
-        {
-          "file": "apps/voice-streaming/tests/__pycache__/test_tts_service.cpython-314-pytest-9.0.2.pyc",
-          "hash": "2077900493627712641"
-        },
-        {
-          "file": "apps/voice-streaming/tests/test_ai_service_client.py",
-          "hash": "7214167935306598616"
-        },
-        {
-          "file": "apps/voice-streaming/tests/test_circuit_breaker.py",
-          "hash": "15704461548530531170"
-        },
-        {
-          "file": "apps/voice-streaming/tests/test_llm_client.py",
-          "hash": "11936535756636075124"
-        },
-        {
-          "file": "apps/voice-streaming/tests/test_llm_service.py",
-          "hash": "16016131217280422259"
-        },
-        {
-          "file": "apps/voice-streaming/tests/test_realtime_client.py",
-          "hash": "10009890336656531857"
-        },
-        {
-          "file": "apps/voice-streaming/tests/test_realtime_service.py",
-          "hash": "7161365102992879560"
-        },
-        {
-          "file": "apps/voice-streaming/tests/test_tts_client.py",
-          "hash": "11595083951413414296"
-        },
-        {
-          "file": "apps/voice-streaming/tests/test_tts_service.py",
-          "hash": "7181050486207362479"
         }
       ]
     }
