@@ -1,0 +1,18 @@
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-core [39m[27m[0m [2mlibs/ai-core/src/[22m[1mai-core.module.spec.ts[22m
+  AiCoreModule
+    [32m√[39m [2mshould register LLM provider when llm config is provided (14 ms)[22m
+    [32m√[39m [2mshould register TTS provider when tts config is provided (2 ms)[22m
+    [32m√[39m [2mshould register STT provider when stt config is provided (3 ms)[22m
+    [32m√[39m [2mshould register Realtime provider when realtime config is provided (4 ms)[22m
+    [32m√[39m [2mshould register all providers when full config is provided (3 ms)[22m
+    [32m√[39m [2mshould register no providers when empty config is provided[22m
+    [32m√[39m [2mshould register TextToVoiceService when both llm and tts are configured (4 ms)[22m
+    [32m√[39m [2mshould not register TextToVoiceService when only llm is configured[22m
+    [32m√[39m [2mshould register VoiceToVoiceService when both realtime and tts are configured (4 ms)[22m
+    [32m√[39m [2mshould not register VoiceToVoiceService when only realtime is configured (1 ms)[22m
+
+[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 total
+[1mTests:       [22m[1m[32m10 passed[39m[22m, 10 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        3.742 s
+[2mRan all test suites[22m[2m matching [22m/ai-core.module/i[2m.[22m

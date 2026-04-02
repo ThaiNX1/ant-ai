@@ -1,0 +1,11 @@
+node_modules
+dist
+.nx
+.git
+.github
+coverage
+*.md
+.prettierrc
+.eslintrc*
+**/*.spec.ts
+**/*.test.ts

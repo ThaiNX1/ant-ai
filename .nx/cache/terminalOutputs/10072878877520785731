@@ -1,0 +1,12 @@
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/stt/[22m[1mstt.controller.spec.ts[22m
+  SttController
+    POST /stt/transcribe
+      [32m√[39m [2mshould return transcribed text from audio buffer (24 ms)[22m
+      [32m√[39m [2mshould handle empty transcription result (4 ms)[22m
+      [32m√[39m [2mshould propagate errors from SttService (12 ms)[22m
+
+[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 total
+[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        3.232 s
+[2mRan all test suites[22m[2m matching [22m/stt\\stt.controller.spec/i[2m.[22m

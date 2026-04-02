@@ -1,0 +1,150 @@
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/[22m[1mapp.controller.spec.ts[22m
+  AppController
+    [32m√[39m [2mshould return service info (37 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/[22m[1mapp.service.spec.ts[22m
+  AppService
+    [32m√[39m [2mshould return service info (26 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/health/[22m[1mhealth.controller.spec.ts[22m
+  HealthController
+    GET /health
+      [32m√[39m [2mshould return status ok with service name (34 ms)[22m
+      [32m√[39m [2mshould return a valid ISO timestamp (5 ms)[22m
+
+[31m[Nest] 3644  - [39m04/01/2026, 6:43:35 PM [31m  ERROR[39m [38;5;3m[GlobalExceptionFilter] [39m[31mAdapterError [gemini] API_RATE_LIMIT: Rate limit exceeded[39m
+AdapterError: Rate limit exceeded
+    at Object.<anonymous> (D:\Project\ANT\ant-ai\apps\ai-service\src\app\filters\global-exception.filter.spec.ts:60:25)
+    at Promise.then.completed (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:121:9)
+    at run (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\testWorker.js:106:12)
+[31m[Nest] 3644  - [39m04/01/2026, 6:43:35 PM [31m  ERROR[39m [38;5;3m[GlobalExceptionFilter] [39m[31mUnhandled exception: Something broke internally[39m
+Error: Something broke internally
+    at Object.<anonymous> (D:\Project\ANT\ant-ai\apps\ai-service\src\app\filters\global-exception.filter.spec.ts:80:25)
+    at Promise.then.completed (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:121:9)
+    at run (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\testWorker.js:106:12)
+[31m[Nest] 3644  - [39m04/01/2026, 6:43:35 PM [31m  ERROR[39m [38;5;3m[GlobalExceptionFilter] [39m[31mUnhandled exception: secret internal detail[39m
+Error: secret internal detail
+    at Object.<anonymous> (D:\Project\ANT\ant-ai\apps\ai-service\src\app\filters\global-exception.filter.spec.ts:92:25)
+    at Promise.then.completed (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:121:9)
+    at run (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\testWorker.js:106:12)
+[31m[Nest] 3644  - [39m04/01/2026, 6:43:35 PM [31m  ERROR[39m [38;5;3m[GlobalExceptionFilter] [39m[31mUnhandled exception: string error[39m
+Error: string error
+    at GlobalExceptionFilter.catch (D:\Project\ANT\ant-ai\apps\ai-service\src\app\filters\global-exception.filter.ts:46:60)
+    at Object.<anonymous> (D:\Project\ANT\ant-ai\apps\ai-service\src\app\filters\global-exception.filter.spec.ts:102:19)
+    at Promise.then.completed (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at _runTest (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:121:9)
+    at run (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (D:\Project\ANT\ant-ai\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (D:\Project\ANT\ant-ai\node_modules\jest-runner\build\testWorker.js:106:12)
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/filters/[22m[1mglobal-exception.filter.spec.ts[22m ([0m[1m[41m5.077 s[49m[22m[0m)
+  GlobalExceptionFilter
+    HttpException handling
+      [32m√[39m [2mshould return the correct status and message for HttpException (18 ms)[22m
+      [32m√[39m [2mshould handle HttpException with object response (1 ms)[22m
+    AdapterError handling
+      [32m√[39m [2mshould return 502 with provider info for AdapterError (14 ms)[22m
+    Unknown error handling
+      [32m√[39m [2mshould return 500 with generic message for unknown errors (5 ms)[22m
+      [32m√[39m [2mshould not expose stack traces for unknown errors (6 ms)[22m
+      [32m√[39m [2mshould handle non-Error thrown values (5 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/stt/[22m[1mstt.controller.spec.ts[22m ([0m[1m[41m5.41 s[49m[22m[0m)
+  SttController
+    POST /stt/transcribe
+      [32m√[39m [2mshould return transcribed text from audio buffer (27 ms)[22m
+      [32m√[39m [2mshould handle empty transcription result (3 ms)[22m
+      [32m√[39m [2mshould propagate errors from SttService (9 ms)[22m
+
+[31m[Nest] 12776  - [39m04/01/2026, 6:43:35 PM [31m  ERROR[39m [38;5;3m[RealtimeGateway] [39m[31mFailed to create session for client client_1775043815399_f6vocbs: Connection failed[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/realtime/[22m[1mrealtime.gateway.spec.ts[22m ([0m[1m[41m5.525 s[49m[22m[0m)
+  RealtimeGateway
+    handleConnection
+      [32m√[39m [2mshould create a session for a new client (29 ms)[22m
+      [32m√[39m [2mshould assign a unique client ID if not present (3 ms)[22m
+      [32m√[39m [2mshould close client on connection failure (3 ms)[22m
+    handleDisconnect
+      [32m√[39m [2mshould cleanup session on disconnect (4 ms)[22m
+      [32m√[39m [2mshould handle disconnect for unknown client gracefully (4 ms)[22m
+    handleAudio
+      [32m√[39m [2mshould feed audio to the session service (2 ms)[22m
+      [32m√[39m [2mshould not feed audio if no session exists (2 ms)[22m
+    forwardResponses
+      [32m√[39m [2mshould forward responses from service to client (59 ms)[22m
+    session management
+      [32m√[39m [2mshould track session count correctly (4 ms)[22m
+      [32m√[39m [2mshould report hasSession correctly (2 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/tts/[22m[1mtts.controller.spec.ts[22m ([0m[1m[41m5.731 s[49m[22m[0m)
+  TtsController
+    POST /tts/synthesize-stream
+      [32m√[39m [2mshould stream audio chunks via chunked response (19 ms)[22m
+      [32m√[39m [2mshould pass voiceId as TTS option (2 ms)[22m
+      [32m√[39m [2mshould merge voiceId and options (5 ms)[22m
+      [32m√[39m [2mshould pass options without voiceId (2 ms)[22m
+      [32m√[39m [2mshould propagate errors from TtsService (9 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/llm/[22m[1mllm.controller.spec.ts[22m ([0m[1m[41m5.747 s[49m[22m[0m)
+  LlmController
+    POST /llm/generate
+      [32m√[39m [2mshould return generated text result (16 ms)[22m
+      [32m√[39m [2mshould pass options to LlmService (2 ms)[22m
+      [32m√[39m [2mshould propagate errors from LlmService (10 ms)[22m
+    POST /llm/generate-stream
+      [32m√[39m [2mshould return SSE observable with streamed chunks (3 ms)[22m
+      [32m√[39m [2mshould pass options to generateStream (2 ms)[22m
+      [32m√[39m [2mshould propagate stream errors through observable (10 ms)[22m
+
+[1mTest Suites: [22m[1m[32m8 passed[39m[22m, 8 total
+[1mTests:       [22m[1m[32m34 passed[39m[22m, 34 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        [1m[33m6.594 s[39m[22m
+[2mRan all test suites[22m[2m.[22m

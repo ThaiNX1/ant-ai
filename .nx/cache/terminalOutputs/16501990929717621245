@@ -1,0 +1,55 @@
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m customer-service [39m[27m[0m [2mapps/customer-service/src/app/ticket/[22m[1mticket.service.spec.ts[22m
+  TicketService
+    create
+      [32m√[39m [2mshould create a ticket with default status and priority (27 ms)[22m
+      [32m√[39m [2mshould use provided priority (1 ms)[22m
+    findAll
+      [32m√[39m [2mshould return empty array when no tickets (2 ms)[22m
+      [32m√[39m [2mshould return all created tickets (1 ms)[22m
+    findById
+      [32m√[39m [2mshould return ticket by id[22m
+      [32m√[39m [2mshould throw NotFoundException for unknown id (20 ms)[22m
+    update
+      [32m√[39m [2mshould update ticket fields (2 ms)[22m
+      [32m√[39m [2mshould throw NotFoundException for unknown id (2 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m customer-service [39m[27m[0m [2mapps/customer-service/src/app/[22m[1mapp.service.spec.ts[22m
+  AppService
+    [32m√[39m [2mshould return service info (27 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m customer-service [39m[27m[0m [2mapps/customer-service/src/app/[22m[1mapp.controller.spec.ts[22m
+  AppController
+    [32m√[39m [2mshould return service info (28 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m customer-service [39m[27m[0m [2mapps/customer-service/src/app/ticket/[22m[1mticket.controller.spec.ts[22m
+  TicketController
+    [32m√[39m [2mshould create a ticket (12 ms)[22m
+    [32m√[39m [2mshould return all tickets (2 ms)[22m
+    [32m√[39m [2mshould return ticket by id (2 ms)[22m
+    [32m√[39m [2mshould update a ticket (2 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m customer-service [39m[27m[0m [2mapps/customer-service/src/app/chat/[22m[1mchat.service.spec.ts[22m ([0m[1m[41m5.315 s[49m[22m[0m)
+  ChatService
+    [32m√[39m [2mshould return a reply from LLM (20 ms)[22m
+    [32m√[39m [2mshould use provided sessionId (1 ms)[22m
+    [32m√[39m [2mshould include system prompt in LLM call (1 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m customer-service [39m[27m[0m [2mapps/customer-service/src/app/knowledge-base/[22m[1mknowledge-base.service.spec.ts[22m ([0m[1m[41m5.345 s[49m[22m[0m)
+  KnowledgeBaseService
+    [32m√[39m [2mshould return an answer from LLM with RAG prompt (17 ms)[22m
+    [32m√[39m [2mshould include RAG context in prompt (1 ms)[22m
+    [32m√[39m [2mshould return empty sources when no articles match (1 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m customer-service [39m[27m[0m [2mapps/customer-service/src/app/knowledge-base/[22m[1mknowledge-base.controller.spec.ts[22m ([0m[1m[41m5.696 s[49m[22m[0m)
+  KnowledgeBaseController
+    [32m√[39m [2mshould search knowledge base and return result (8 ms)[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m customer-service [39m[27m[0m [2mapps/customer-service/src/app/chat/[22m[1mchat.controller.spec.ts[22m ([0m[1m[41m5.76 s[49m[22m[0m)
+  ChatController
+    [32m√[39m [2mshould send a message and return response (11 ms)[22m
+
+[1mTest Suites: [22m[1m[32m8 passed[39m[22m, 8 total
+[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        [1m[33m6.62 s[39m[22m
+[2mRan all test suites[22m[2m.[22m

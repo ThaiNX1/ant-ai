@@ -1,0 +1,33 @@
+{
+  "name": "voice-streaming",
+  "sourceRoot": "apps/voice-streaming",
+  "projectType": "application",
+  "tags": ["lang:python"],
+  "targets": {
+    "py-serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "python -m voice_streaming",
+        "cwd": "apps/voice-streaming"
+      }
+    },
+    "py-test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pytest apps/voice-streaming/tests/"
+      }
+    },
+    "py-docker-build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker build -f apps/voice-streaming/Dockerfile -t voice-streaming ."
+      }
+    },
+    "py-deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'Deploy voice-streaming: docker push and restart on EC2'"
+      }
+    }
+  }
+}

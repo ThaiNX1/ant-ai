@@ -1,0 +1,182 @@
+[0m[7m[1m[31m FAIL [39m[22m[27m[0m [0m[7m[37m backend-client [39m[27m[0m [2mlibs/backend-client/src/[22m[1mbackend-client.module.spec.ts[22m
+[1m[31m  [1m● [22m[1mBackendClientModule › should register and provide BackendClient and BackendDeviceClient[39m[22m
+
+    TypeError: Cannot read properties of undefined (reading 'create')
+[2m[22m
+[2m    [0m [90m 17 |[39m     [36mprivate[39m readonly options[33m:[39m [33mBackendClientOptions[39m[33m,[39m[22m
+[2m     [90m 18 |[39m   ) {[22m
+[2m    [31m[1m>[22m[2m[39m[90m 19 |[39m     [36mthis[39m[33m.[39mhttp [33m=[39m axios[33m.[39mcreate({[22m
+[2m     [90m    |[39m                       [31m[1m^[22m[2m[39m[22m
+[2m     [90m 20 |[39m       baseURL[33m:[39m options[33m.[39mbaseUrl[33m,[39m[22m
+[2m     [90m 21 |[39m       timeout[33m:[39m options[33m.[39mtimeout [33m?[39m[33m?[39m [35m10000[39m[33m,[39m[22m
+[2m     [90m 22 |[39m     })[33m;[39m[0m[22m
+[2m[22m
+[2m      [2mat new BackendClient ([22m[2msrc/backend.client.ts[2m:19:23)[22m[2m[22m
+[2m      [2mat TestingInjector.instantiateClass ([22m[2m../../node_modules/@nestjs/core/injector/injector.js[2m:373:19)[22m[2m[22m
+[2m      [2mat callback ([22m[2m../../node_modules/@nestjs/core/injector/injector.js[2m:65:45)[22m[2m[22m
+[2m      [2mat TestingInjector.resolveConstructorParams ([22m[2m../../node_modules/@nestjs/core/injector/injector.js[2m:145:24)[22m[2m[22m
+[2m      [2mat TestingInjector.loadInstance ([22m[2m../../node_modules/@nestjs/core/injector/injector.js[2m:70:13)[22m[2m[22m
+[2m      [2mat TestingInjector.loadProvider ([22m[2m../../node_modules/@nestjs/core/injector/injector.js[2m:98:9)[22m[2m[22m
+[2m      [2mat [22m[2m../../node_modules/@nestjs/core/injector/instance-loader.js[2m:56:13[22m[2m[22m
+[2m          at async Promise.all (index 4)[22m
+[2m      [2mat TestingInstanceLoader.createInstancesOfProviders ([22m[2m../../node_modules/@nestjs/core/injector/instance-loader.js[2m:55:9)[22m[2m[22m
+[2m      [2mat [22m[2m../../node_modules/@nestjs/core/injector/instance-loader.js[2m:40:13[22m[2m[22m
+[2m          at async Promise.all (index 2)[22m
+[2m      [2mat TestingInstanceLoader.createInstances ([22m[2m../../node_modules/@nestjs/core/injector/instance-loader.js[2m:39:9)[22m[2m[22m
+[2m      [2mat TestingInstanceLoader.createInstancesOfDependencies ([22m[2m../../node_modules/@nestjs/core/injector/instance-loader.js[2m:22:13)[22m[2m[22m
+[2m      [2mat TestingInstanceLoader.createInstancesOfDependencies ([22m[2m../../node_modules/@nestjs/testing/testing-instance-loader.js[2m:9:9)[22m[2m[22m
+[2m      [2mat TestingModuleBuilder.createInstancesOfDependencies ([22m[2m../../node_modules/@nestjs/testing/testing-module.builder.js[2m:118:9)[22m[2m[22m
+[2m      [2mat TestingModuleBuilder.compile ([22m[2m../../node_modules/@nestjs/testing/testing-module.builder.js[2m:74:9)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36msrc/backend-client.module.spec.ts[39m[0m[2m:16:20)[22m[2m[22m
+
+[1m[31m  [1m● [22m[1mBackendClientModule › should inject BACKEND_OPTIONS with provided values[39m[22m
+
+    TypeError: Cannot read properties of undefined (reading 'create')
+[2m[22m
+[2m    [0m [90m 17 |[39m     [36mprivate[39m readonly options[33m:[39m [33mBackendClientOptions[39m[33m,[39m[22m
+[2m     [90m 18 |[39m   ) {[22m
+[2m    [31m[1m>[22m[2m[39m[90m 19 |[39m     [36mthis[39m[33m.[39mhttp [33m=[39m axios[33m.[39mcreate({[22m
+[2m     [90m    |[39m                       [31m[1m^[22m[2m[39m[22m
+[2m     [90m 20 |[39m       baseURL[33m:[39m options[33m.[39mbaseUrl[33m,[39m[22m
+[2m     [90m 21 |[39m       timeout[33m:[39m options[33m.[39mtimeout [33m?[39m[33m?[39m [35m10000[39m[33m,[39m[22m
+[2m     [90m 22 |[39m     })[33m;[39m[0m[22m
+[2m[22m
+[2m      [2mat new BackendClient ([22m[2msrc/backend.client.ts[2m:19:23)[22m[2m[22m
+[2m      [2mat TestingInjector.instantiateClass ([22m[2m../../node_modules/@nestjs/core/injector/injector.js[2m:373:19)[22m[2m[22m
+[2m      [2mat callback ([22m[2m../../node_modules/@nestjs/core/injector/injector.js[2m:65:45)[22m[2m[22m
+[2m      [2mat TestingInjector.resolveConstructorParams ([22m[2m../../node_modules/@nestjs/core/injector/injector.js[2m:145:24)[22m[2m[22m
+[2m      [2mat TestingInjector.loadInstance ([22m[2m../../node_modules/@nestjs/core/injector/injector.js[2m:70:13)[22m[2m[22m
+[2m      [2mat TestingInjector.loadProvider ([22m[2m../../node_modules/@nestjs/core/injector/injector.js[2m:98:9)[22m[2m[22m
+[2m      [2mat [22m[2m../../node_modules/@nestjs/core/injector/instance-loader.js[2m:56:13[22m[2m[22m
+[2m          at async Promise.all (index 4)[22m
+[2m      [2mat TestingInstanceLoader.createInstancesOfProviders ([22m[2m../../node_modules/@nestjs/core/injector/instance-loader.js[2m:55:9)[22m[2m[22m
+[2m      [2mat [22m[2m../../node_modules/@nestjs/core/injector/instance-loader.js[2m:40:13[22m[2m[22m
+[2m          at async Promise.all (index 2)[22m
+[2m      [2mat TestingInstanceLoader.createInstances ([22m[2m../../node_modules/@nestjs/core/injector/instance-loader.js[2m:39:9)[22m[2m[22m
+[2m      [2mat TestingInstanceLoader.createInstancesOfDependencies ([22m[2m../../node_modules/@nestjs/core/injector/instance-loader.js[2m:22:13)[22m[2m[22m
+[2m      [2mat TestingInstanceLoader.createInstancesOfDependencies ([22m[2m../../node_modules/@nestjs/testing/testing-instance-loader.js[2m:9:9)[22m[2m[22m
+[2m      [2mat TestingModuleBuilder.createInstancesOfDependencies ([22m[2m../../node_modules/@nestjs/testing/testing-module.builder.js[2m:118:9)[22m[2m[22m
+[2m      [2mat TestingModuleBuilder.compile ([22m[2m../../node_modules/@nestjs/testing/testing-module.builder.js[2m:74:9)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36msrc/backend-client.module.spec.ts[39m[0m[2m:35:20)[22m[2m[22m
+
+[0m[7m[1m[31m FAIL [39m[22m[27m[0m [0m[7m[37m backend-client [39m[27m[0m [2mlibs/backend-client/src/[22m[1mbackend-device.client.spec.ts[22m
+[1m[31m  [1m● [22m[1mBackendDeviceClient › streamFileFromCache › should throw BackendHttpError on 4xx/5xx[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mrejects[2m.[22mtoThrow[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected constructor: [32mBackendHttpError[39m
+
+    Received function did not throw
+[2m[22m
+[2m    [0m [90m 49 |[39m       [36mawait[39m expect([22m
+[2m     [90m 50 |[39m         client[33m.[39mstreamFileFromCache([32m'dev-1'[39m[33m,[39m [32m'http://file.url/missing.png'[39m)[33m,[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 51 |[39m       )[33m.[39mrejects[33m.[39mtoThrow([33mBackendHttpError[39m)[33m;[39m[22m
+[2m     [90m    |[39m                 [31m[1m^[22m[2m[39m[22m
+[2m     [90m 52 |[39m     })[33m;[39m[22m
+[2m     [90m 53 |[39m[22m
+[2m     [90m 54 |[39m     it([32m'should throw BackendTimeoutError on timeout'[39m[33m,[39m [36masync[39m () [33m=>[39m {[0m[22m
+[2m[22m
+[2m      [2mat Object.toThrow ([22m[2m../../node_modules/expect/build/index.js[2m:218:22)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36msrc/backend-device.client.spec.ts[39m[0m[2m:51:17)[22m[2m[22m
+
+[1m[31m  [1m● [22m[1mBackendDeviceClient › streamFileFromCache › should throw BackendTimeoutError on timeout[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mrejects[2m.[22mtoThrow[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected constructor: [32mBackendTimeoutError[39m
+
+    Received function did not throw
+[2m[22m
+[2m    [0m [90m 58 |[39m       [36mawait[39m expect([22m
+[2m     [90m 59 |[39m         client[33m.[39mstreamFileFromCache([32m'dev-1'[39m[33m,[39m [32m'http://file.url/slow.png'[39m)[33m,[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 60 |[39m       )[33m.[39mrejects[33m.[39mtoThrow([33mBackendTimeoutError[39m)[33m;[39m[22m
+[2m     [90m    |[39m                 [31m[1m^[22m[2m[39m[22m
+[2m     [90m 61 |[39m     })[33m;[39m[22m
+[2m     [90m 62 |[39m   })[33m;[39m[22m
+[2m     [90m 63 |[39m[0m[22m
+[2m[22m
+[2m      [2mat Object.toThrow ([22m[2m../../node_modules/expect/build/index.js[2m:218:22)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36msrc/backend-device.client.spec.ts[39m[0m[2m:60:17)[22m[2m[22m
+
+[0m[7m[1m[31m FAIL [39m[22m[27m[0m [0m[7m[37m backend-client [39m[27m[0m [2mlibs/backend-client/src/[22m[1mbackend.client.spec.ts[22m
+[1m[31m  [1m● [22m[1mBackendClient › getAccountAndDeviceInfo › should throw BackendHttpError on 4xx response[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mrejects[2m.[22mtoThrow[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected constructor: [32mBackendHttpError[39m
+
+    Received function did not throw
+[2m[22m
+[2m    [0m [90m 45 |[39m       mockRequest[33m.[39mmockRejectedValue(axiosError)[33m;[39m[22m
+[2m     [90m 46 |[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 47 |[39m       [36mawait[39m expect(client[33m.[39mgetAccountAndDeviceInfo([32m'bad-ssrc'[39m))[33m.[39mrejects[33m.[39mtoThrow([22m
+[2m     [90m    |[39m                                                                        [31m[1m^[22m[2m[39m[22m
+[2m     [90m 48 |[39m         [33mBackendHttpError[39m[33m,[39m[22m
+[2m     [90m 49 |[39m       )[33m;[39m[22m
+[2m     [90m 50 |[39m       [36mawait[39m expect([0m[22m
+[2m[22m
+[2m      [2mat Object.toThrow ([22m[2m../../node_modules/expect/build/index.js[2m:218:22)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36msrc/backend.client.spec.ts[39m[0m[2m:47:72)[22m[2m[22m
+
+[1m[31m  [1m● [22m[1mBackendClient › getAccountAndDeviceInfo › should throw BackendHttpError on 5xx response[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mrejects[2m.[22mtoThrow[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected constructor: [32mBackendHttpError[39m
+
+    Received function did not throw
+[2m[22m
+[2m    [0m [90m 66 |[39m       mockRequest[33m.[39mmockRejectedValue(axiosError)[33m;[39m[22m
+[2m     [90m 67 |[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 68 |[39m       [36mawait[39m expect(client[33m.[39mgetAccountAndDeviceInfo([32m'ssrc-1'[39m))[33m.[39mrejects[33m.[39mtoThrow([22m
+[2m     [90m    |[39m                                                                      [31m[1m^[22m[2m[39m[22m
+[2m     [90m 69 |[39m         [33mBackendHttpError[39m[33m,[39m[22m
+[2m     [90m 70 |[39m       )[33m;[39m[22m
+[2m     [90m 71 |[39m       [36mawait[39m expect([0m[22m
+[2m[22m
+[2m      [2mat Object.toThrow ([22m[2m../../node_modules/expect/build/index.js[2m:218:22)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36msrc/backend.client.spec.ts[39m[0m[2m:68:70)[22m[2m[22m
+
+[1m[31m  [1m● [22m[1mBackendClient › getAccountAndDeviceInfo › should throw BackendTimeoutError on timeout[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mrejects[2m.[22mtoThrow[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected constructor: [32mBackendTimeoutError[39m
+
+    Received function did not throw
+[2m[22m
+[2m    [0m [90m 81 |[39m       mockRequest[33m.[39mmockRejectedValue(axiosError)[33m;[39m[22m
+[2m     [90m 82 |[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 83 |[39m       [36mawait[39m expect(client[33m.[39mgetAccountAndDeviceInfo([32m'ssrc-1'[39m))[33m.[39mrejects[33m.[39mtoThrow([22m
+[2m     [90m    |[39m                                                                      [31m[1m^[22m[2m[39m[22m
+[2m     [90m 84 |[39m         [33mBackendTimeoutError[39m[33m,[39m[22m
+[2m     [90m 85 |[39m       )[33m;[39m[22m
+[2m     [90m 86 |[39m       [36mawait[39m expect([0m[22m
+[2m[22m
+[2m      [2mat Object.toThrow ([22m[2m../../node_modules/expect/build/index.js[2m:218:22)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36msrc/backend.client.spec.ts[39m[0m[2m:83:70)[22m[2m[22m
+
+[1m[31m  [1m● [22m[1mBackendClient › getLessonStatus › should throw BackendHttpError on error response[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mrejects[2m.[22mtoThrow[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected constructor: [32mBackendHttpError[39m
+
+    Received function did not throw
+[2m[22m
+[2m    [0m [90m 118 |[39m       mockRequest[33m.[39mmockRejectedValue(axiosError)[33m;[39m[22m
+[2m     [90m 119 |[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 120 |[39m       [36mawait[39m expect(client[33m.[39mgetLessonStatus([32m'lesson-1'[39m))[33m.[39mrejects[33m.[39mtoThrow([22m
+[2m     [90m     |[39m                                                                [31m[1m^[22m[2m[39m[22m
+[2m     [90m 121 |[39m         [33mBackendHttpError[39m[33m,[39m[22m
+[2m     [90m 122 |[39m       )[33m;[39m[22m
+[2m     [90m 123 |[39m     })[33m;[39m[0m[22m
+[2m[22m
+[2m      [2mat Object.toThrow ([22m[2m../../node_modules/expect/build/index.js[2m:218:22)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36msrc/backend.client.spec.ts[39m[0m[2m:120:64)[22m[2m[22m
+
+[1mTest Suites: [22m[1m[31m3 failed[39m[22m, 3 total
+[1mTests:       [22m[1m[31m8 failed[39m[22m, [1m[32m5 passed[39m[22m, 13 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4.961 s
+[2mRan all test suites[22m[2m.[22m

@@ -1,0 +1,13 @@
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/[22m[1mapp.controller.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/[22m[1mapp.service.spec.ts[22m
+[31m[Nest] 22352  - [39m04/01/2026, 6:40:47 PM [31m  ERROR[39m [38;5;3m[RealtimeGateway] [39m[31mFailed to create session for client client_1775043647316_lqoo131: Connection failed[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/stt/[22m[1mstt.controller.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/realtime/[22m[1mrealtime.gateway.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/tts/[22m[1mtts.controller.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ai-service [39m[27m[0m [2mapps/ai-service/src/app/llm/[22m[1mllm.controller.spec.ts[22m
+
+[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 total
+[1mTests:       [22m[1m[32m26 passed[39m[22m, 26 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5.174 s, estimated 6 s
+[2mRan all test suites[22m[2m.[22m

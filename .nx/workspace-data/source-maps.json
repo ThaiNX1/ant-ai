@@ -1,0 +1,936 @@
+{
+  "apps/ai-service": {
+    "root": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "eslint.config.js",
+      "@nx/eslint/plugin"
+    ],
+    "name": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.executor": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.outputs": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.defaultConfiguration": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.target": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.compiler": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.outputPath": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.main": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.tsConfig": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.webpackConfig": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.generatePackageJson": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.development": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.executor": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.defaultConfiguration": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options.buildTarget": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development.buildTarget": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production.buildTarget": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.passWithNoTests": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.executor": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.options": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.options.command": [
+      "apps/ai-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.serve.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.serve.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.docker-build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.docker-build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.docker-build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "apps/customer-service": {
+    "root": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "eslint.config.js",
+      "@nx/eslint/plugin"
+    ],
+    "name": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.executor": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.outputs": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.defaultConfiguration": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.target": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.compiler": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.outputPath": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.main": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.tsConfig": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.webpackConfig": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.generatePackageJson": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.development": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.executor": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.defaultConfiguration": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options.buildTarget": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development.buildTarget": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production.buildTarget": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.passWithNoTests": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.executor": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.options": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.options.command": [
+      "apps/customer-service/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.serve.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.serve.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.docker-build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.docker-build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.docker-build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "libs/ai-core": {
+    "root": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "eslint.config.js",
+      "@nx/eslint/plugin"
+    ],
+    "name": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.passWithNoTests": [
+      "libs/ai-core/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "libs/backend-client": {
+    "root": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "eslint.config.js",
+      "@nx/eslint/plugin"
+    ],
+    "name": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.passWithNoTests": [
+      "libs/backend-client/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "libs/common": {
+    "root": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "eslint.config.js",
+      "@nx/eslint/plugin"
+    ],
+    "name": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.passWithNoTests": [
+      "libs/common/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "libs/database": {
+    "root": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "eslint.config.js",
+      "@nx/eslint/plugin"
+    ],
+    "name": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.passWithNoTests": [
+      "libs/database/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "apps/voice-streaming": {
+    "root": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.lang:python": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-serve": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-serve.executor": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-serve.options": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-serve.options.command": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-serve.options.cwd": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-test": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-test.executor": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-test.options": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-test.options.command": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-docker-build": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-docker-build.executor": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-docker-build.options": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-docker-build.options.command": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-deploy": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-deploy.executor": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-deploy.options": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-deploy.options.command": [
+      "apps/voice-streaming/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.py-serve.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.py-serve.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.py-test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.py-test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.py-docker-build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.py-docker-build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.py-docker-build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.py-deploy.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.py-deploy.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.py-deploy.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  }
+}

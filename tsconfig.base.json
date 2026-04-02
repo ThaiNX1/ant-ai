@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2021",
+    "module": "commonjs",
+    "lib": ["es2021"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ai-platform/common": ["libs/common/src/index.ts"],
+      "@ai-platform/ai-core": ["libs/ai-core/src/index.ts"],
+      "@ai-platform/database": ["libs/database/src/index.ts"],
+      "@ai-platform/backend-client": ["libs/backend-client/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

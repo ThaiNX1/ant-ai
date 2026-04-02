@@ -1,0 +1,76 @@
+{
+  "run": {
+    "command": "nx run-many --target=test --all",
+    "startTime": "2026-04-01T12:17:24.887Z",
+    "endTime": "2026-04-01T12:17:33.340Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "ai-core:test",
+      "target": "test",
+      "projectName": "ai-core",
+      "hash": "12834987383888916234",
+      "startTime": "2026-04-01T12:17:24.907Z",
+      "endTime": "2026-04-01T12:17:24.912Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "common:test",
+      "target": "test",
+      "projectName": "common",
+      "hash": "104677638737400866",
+      "startTime": "2026-04-01T12:17:24.907Z",
+      "endTime": "2026-04-01T12:17:24.914Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "database:test",
+      "target": "test",
+      "projectName": "database",
+      "hash": "16061399706523408433",
+      "startTime": "2026-04-01T12:17:24.907Z",
+      "endTime": "2026-04-01T12:17:24.915Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "ai-service:test",
+      "target": "test",
+      "projectName": "ai-service",
+      "hash": "6891403318210570260",
+      "startTime": "2026-04-01T12:17:24.922Z",
+      "endTime": "2026-04-01T12:17:24.944Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "backend-client:test",
+      "target": "test",
+      "projectName": "backend-client",
+      "hash": "18075229627845327867",
+      "startTime": "2026-04-01T12:17:24.926Z",
+      "endTime": "2026-04-01T12:17:24.945Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "customer-service:test",
+      "target": "test",
+      "projectName": "customer-service",
+      "hash": "3376387123460447778",
+      "startTime": "2026-04-01T12:17:24.930Z",
+      "endTime": "2026-04-01T12:17:33.321Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}
