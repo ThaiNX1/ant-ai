@@ -1,7 +1,7 @@
 import { Controller, Inject, Post, Body, Sse } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { ILlmAdapter, namedToken } from '@ai-platform/ai-core';
 import { GenerateDto } from './dto/generate.dto';
+import { namedToken, ILlmAdapter } from '@ai-platform/ai-core';
 
 interface MessageEvent {
   data: string | object;

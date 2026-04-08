@@ -11,8 +11,12 @@ import {
   namedToken,
 } from './constants/injection-tokens';
 import { AdapterFactory } from './adapters/adapter.factory';
+import { AIConfigModule } from './config/ai-config.module';
 
-@Module({})
+@Module({
+  imports: [AIConfigModule],
+  exports: [AIConfigModule],
+})
 export class AiCoreModule {
   /**
    * Register AI adapters. Each type accepts a single config or an array.
