@@ -123,6 +123,64 @@ Orchestrator giữ toàn bộ lesson trong RAM
 
 **Nguyên tắc cốt lõi:** AI không "biết" toàn bộ giáo trình. Mỗi lần gọi LLM chỉ đưa đúng 1 step + context cần thiết. Orchestrator là "não", LLM chỉ là "miệng".
 
+### 2.3. Voice Pipeline thống nhất
+
+Cả Free Talk và Lesson mode đều dùng cùng pipeline:
+
+```
+Audio → STT (Whisper) → LLM → TTS (ElevenLabs, custom voice) → Audio
+```
+
+Không dùng LLM Realtime API vì:
+- Không hỗ trợ custom voice (chỉ có ~6 giọng cố định)
+- Không pronunciation assessment
+- Không cache được (output là audio, không phải text)
+- Không kiểm soát nội dung trước khi phát
+
+### 2.4. VoiceConfig — Cấu hình giọng nói
+
+Mỗi robot/course có thể config giọng riêng, load 1 lần khi session bắt đầu, truyền vào mọi TTS call.
+
+```typescript
+interface VoiceConfig {
+  voiceId: string;          // ElevenLabs voice ID (custom clone hoặc preset)
+  stability: number;        // 0-1, giọng ổn định (cao = ít biến đổi)
+  similarityBoost: number;  // 0-1, giống mẫu gốc (cao = giống hơn)
+  style: number;            // 0-1, biểu cảm (cao = nhiều cảm xúc)
+  speed: number;            // 0.5-2.0 (< 1 = chậm, phù hợp trẻ em)
+  language: string;         // vi, en, vi-en (mix)
+}
+```
+
+Ví dụ:
+
+```typescript
+// Giọng giáo viên robot — đã clone từ mẫu giọng thật
+const robotTeacherVoice: VoiceConfig = {
+  voiceId: 'custom_teacher_001',
+  stability: 0.7,
+  similarityBoost: 0.8,
+  style: 0.5,
+  speed: 0.9,              // chậm hơn chút cho trẻ em
+  language: 'vi',
+};
+
+// Giọng giáo viên tiếng Anh — native speaker
+const englishTeacherVoice: VoiceConfig = {
+  voiceId: 'custom_english_teacher_002',
+  stability: 0.8,
+  similarityBoost: 0.9,
+  style: 0.3,
+  speed: 0.85,
+  language: 'en',
+};
+```
+
+VoiceConfig lưu ở DB:
+- `robots.config` JSONB → voice mặc định của robot
+- `courses.config` JSONB → voice riêng cho từng khóa học (override robot default)
+- Ưu tiên: course voice > robot voice > system default
+
 ---
 
 ## 3. Cấu trúc giáo trình (Lesson Plan)
@@ -1080,7 +1138,6 @@ async def cleanup_idle(self, max_idle_seconds=300):
 | TTS | ElevenLabs, Sarvam | Text → Speech |
 | STT | OpenAI Whisper | Speech → Text |
 | Pronunciation | Azure Speech SDK | Đánh giá phát âm |
-| Realtime voice | OpenAI Realtime API | Voice-to-voice streaming |
 | Message broker | MQTT (Mosquitto/EMQX) | Robot ↔ lesson-service (image, text, commands) |
 | Audio bridge | WebSocket | Python voice-streaming ↔ NestJS lesson-service |
 | Database | PostgreSQL (TypeORM) | Giáo trình, tiến độ, logs, feedback cache |
