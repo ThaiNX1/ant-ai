@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Lint TypeScript on Save",
+  "description": "Tự động kiểm tra lỗi lint/type khi save file TypeScript trong project",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Check the edited file for any TypeScript compilation errors or lint issues using getDiagnostics. If there are issues, briefly report them. If clean, say nothing."
+  }
+}

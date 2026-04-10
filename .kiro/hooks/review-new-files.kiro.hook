@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Review New TypeScript Files",
+  "description": "Kiểm tra file TypeScript mới tạo có đúng conventions (naming, imports, patterns) không",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      "**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review the newly created TypeScript file against project conventions: check file naming (kebab-case), class naming (PascalCase + correct suffix), import order (NestJS → third-party → @ai-platform/* → relative), proper use of class-validator decorators in DTOs, and bracket notation for process.env. Only report issues if found."
+  }
+}
