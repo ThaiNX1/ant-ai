@@ -4,6 +4,15 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/ai-core",
+        "main": "libs/ai-core/src/index.ts",
+        "tsConfig": "libs/ai-core/tsconfig.lib.json"
+      }
+    },
     "lint": {
       "executor": "@nx/eslint:lint"
     },

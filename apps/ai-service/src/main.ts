@@ -8,12 +8,15 @@ import { Logger } from 'nestjs-pino';
 import { AppModule } from './app/app.module';
 import { GlobalExceptionFilter } from './app/filters/global-exception.filter';
 
+import { WsAdapter } from '@nestjs/platform-ws';
+
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter(),
-    { bufferLogs: true },
+    new FastifyAdapter()
   );
+  
+  app.useWebSocketAdapter(new WsAdapter(app));
 
   app.useLogger(app.get(Logger));
   app.enableCors({
@@ -30,10 +33,10 @@ async function bootstrap() {
   );
 
   app.useGlobalFilters(new GlobalExceptionFilter());
-
+  app.setGlobalPrefix('api/v1');
   const port = process.env['PORT'] || 8081;
   await app.listen(port, '0.0.0.0');
-  console.log(`AI service run on port ${port}`);
+  console.log(`AI service run on port http://localhost:${port}`);
 }
 
 bootstrap();

@@ -15,6 +15,7 @@ import { FreeTalkModule } from '../free-talk/free-talk.module';
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: envConfigSchema,
+      envFilePath: ['.env.local', '.env'],
     }),
     LoggerModule.forRoot({
       pinoHttp: {

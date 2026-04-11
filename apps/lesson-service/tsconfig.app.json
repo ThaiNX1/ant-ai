@@ -5,8 +5,19 @@
     "module": "commonjs",
     "types": ["node"],
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": "../../",
+    "paths": {
+      "@ai-platform/ai-core": ["dist/libs/ai-core/src/index"],
+      "@ai-platform/common": ["dist/libs/common/src/index"],
+      "@ai-platform/database": ["dist/libs/database/src/index"],
+      "@ai-platform/backend-client": ["dist/libs/backend-client/src/index"]
+    }
   },
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "references": [
+    { "path": "../../libs/ai-core/tsconfig.lib.json" },
+    { "path": "../../libs/common/tsconfig.lib.json" }
+  ]
 }

@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TtsController } from './tts.controller';
-import { TtsService } from '@ai-platform/ai-core';
+import { ITtsAdapter, namedToken } from '@ai-platform/ai-core';
 import { FastifyReply } from 'fastify';
 
 describe('TtsController', () => {
   let controller: TtsController;
-  let ttsService: jest.Mocked<TtsService>;
+  let googleTts: jest.Mocked<ITtsAdapter>;
 
   function createMockReply(): FastifyReply {
     const chunks: Buffer[] = [];
@@ -19,20 +19,20 @@ describe('TtsController', () => {
   }
 
   beforeEach(async () => {
-    const mockTtsService = {
+    const mockAdapter: jest.Mocked<ITtsAdapter> = {
       synthesize: jest.fn(),
       streamSynthesize: jest.fn(),
-    };
+    } as unknown as jest.Mocked<ITtsAdapter>;
 
     const module: TestingModule = await Test.createTestingModule({
       controllers: [TtsController],
       providers: [
-        { provide: TtsService, useValue: mockTtsService },
+        { provide: namedToken('TTS', 'google-tts'), useValue: mockAdapter },
       ],
     }).compile();
 
     controller = module.get<TtsController>(TtsController);
-    ttsService = module.get(TtsService) as jest.Mocked<TtsService>;
+    googleTts = module.get(namedToken('TTS', 'google-tts'));
   });
 
   describe('POST /tts/synthesize-stream', () => {
@@ -44,7 +44,7 @@ describe('TtsController', () => {
         yield chunk1;
         yield chunk2;
       }
-      ttsService.streamSynthesize.mockReturnValue(mockStream());
+      googleTts.streamSynthesize.mockReturnValue(mockStream());
 
       const reply = createMockReply();
       await controller.synthesizeStream({ text: 'Hello world' }, reply);
@@ -57,22 +57,19 @@ describe('TtsController', () => {
       expect(reply.raw.write).toHaveBeenNthCalledWith(1, chunk1);
       expect(reply.raw.write).toHaveBeenNthCalledWith(2, chunk2);
       expect(reply.raw.end).toHaveBeenCalled();
-      expect(ttsService.streamSynthesize).toHaveBeenCalledWith('Hello world', undefined);
+      expect(googleTts.streamSynthesize).toHaveBeenCalledWith('Hello world', undefined);
     });
 
     it('should pass voiceId as TTS option', async () => {
       async function* mockStream() {
         yield Buffer.from([0x00]);
       }
-      ttsService.streamSynthesize.mockReturnValue(mockStream());
+      googleTts.streamSynthesize.mockReturnValue(mockStream());
 
       const reply = createMockReply();
-      await controller.synthesizeStream(
-        { text: 'Test', voiceId: 'voice-123' },
-        reply,
-      );
+      await controller.synthesizeStream({ text: 'Test', voiceId: 'voice-123' }, reply);
 
-      expect(ttsService.streamSynthesize).toHaveBeenCalledWith('Test', {
+      expect(googleTts.streamSynthesize).toHaveBeenCalledWith('Test', {
         voiceId: 'voice-123',
       });
       expect(reply.raw.end).toHaveBeenCalled();
@@ -82,7 +79,7 @@ describe('TtsController', () => {
       async function* mockStream() {
         yield Buffer.from([0x00]);
       }
-      ttsService.streamSynthesize.mockReturnValue(mockStream());
+      googleTts.streamSynthesize.mockReturnValue(mockStream());
 
       const reply = createMockReply();
       await controller.synthesizeStream(
@@ -90,7 +87,7 @@ describe('TtsController', () => {
         reply,
       );
 
-      expect(ttsService.streamSynthesize).toHaveBeenCalledWith('Test', {
+      expect(googleTts.streamSynthesize).toHaveBeenCalledWith('Test', {
         speed: 1.5,
         voiceId: 'voice-456',
       });
@@ -100,7 +97,7 @@ describe('TtsController', () => {
       async function* mockStream() {
         yield Buffer.from([0x00]);
       }
-      ttsService.streamSynthesize.mockReturnValue(mockStream());
+      googleTts.streamSynthesize.mockReturnValue(mockStream());
 
       const reply = createMockReply();
       await controller.synthesizeStream(
@@ -108,16 +105,16 @@ describe('TtsController', () => {
         reply,
       );
 
-      expect(ttsService.streamSynthesize).toHaveBeenCalledWith('Test', {
+      expect(googleTts.streamSynthesize).toHaveBeenCalledWith('Test', {
         format: 'mp3',
       });
     });
 
-    it('should propagate errors from TtsService', async () => {
+    it('should propagate errors from adapter', async () => {
       async function* mockStream(): AsyncIterable<Buffer> {
         throw new Error('TTS API error');
       }
-      ttsService.streamSynthesize.mockReturnValue(mockStream());
+      googleTts.streamSynthesize.mockReturnValue(mockStream());
 
       const reply = createMockReply();
       await expect(

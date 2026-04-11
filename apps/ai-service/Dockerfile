@@ -23,11 +23,9 @@ ENV PORT=8081
 
 WORKDIR /app
 
-# Copy built output (includes generated package.json from Nx webpack build)
-COPY --from=build /app/dist/apps/ai-service ./
-
-# Install production-only dependencies from the generated package.json
-RUN npm ci --omit=dev && npm cache clean --force
+# Copy compiled output (app + lib directories) and runtime dependencies
+COPY --from=build /app/dist/ ./dist/
+COPY --from=build /app/node_modules/ ./node_modules/
 
 # Create non-root user for security
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
@@ -40,4 +38,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:8081/health || exit 1
 
 # NestJS with Fastify handles SIGTERM natively for graceful shutdown
-CMD ["node", "main.js"]
+CMD ["node", "dist/apps/ai-service/src/main.js"]

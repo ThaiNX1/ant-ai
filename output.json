@@ -1,0 +1,662 @@
+{
+  "graph": {
+    "nodes": {
+      "customer-service": {
+        "name": "customer-service",
+        "type": "app",
+        "data": {
+          "root": "apps/customer-service",
+          "targets": {
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "options": {},
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/eslint.config.js"
+              ],
+              "cache": true
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "apps/customer-service/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true
+            },
+            "build": {
+              "executor": "@nx/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "defaultConfiguration": "production",
+              "options": {
+                "outputPath": "dist/apps/customer-service",
+                "main": "apps/customer-service/src/main.ts",
+                "tsConfig": "apps/customer-service/tsconfig.app.json"
+              },
+              "configurations": {
+                "development": {},
+                "production": {}
+              },
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            },
+            "serve": {
+              "executor": "@nx/js:node",
+              "defaultConfiguration": "development",
+              "options": {
+                "buildTarget": "customer-service:build"
+              },
+              "configurations": {
+                "development": {
+                  "buildTarget": "customer-service:build:development"
+                },
+                "production": {
+                  "buildTarget": "customer-service:build:production"
+                }
+              },
+              "parallelism": true,
+              "cache": false
+            },
+            "docker-build": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "docker build -f apps/customer-service/Dockerfile -t customer-service ."
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false
+            }
+          },
+          "name": "customer-service",
+          "sourceRoot": "apps/customer-service/src",
+          "projectType": "application",
+          "tags": [],
+          "implicitDependencies": []
+        }
+      },
+      "voice-streaming": {
+        "name": "voice-streaming",
+        "type": "app",
+        "data": {
+          "root": "apps/voice-streaming",
+          "name": "voice-streaming",
+          "sourceRoot": "apps/voice-streaming",
+          "projectType": "application",
+          "tags": [
+            "lang:python"
+          ],
+          "targets": {
+            "py-serve": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "python -m voice_streaming",
+                "cwd": "apps/voice-streaming"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "cache": false
+            },
+            "py-test": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "pytest apps/voice-streaming/tests/"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "cache": true
+            },
+            "py-docker-build": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "docker build -f apps/voice-streaming/Dockerfile -t voice-streaming ."
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "py-test"
+              ],
+              "cache": false
+            },
+            "py-deploy": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "echo 'Deploy voice-streaming: docker push and restart on EC2'"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "py-docker-build"
+              ],
+              "cache": false
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "backend-client": {
+        "name": "backend-client",
+        "type": "lib",
+        "data": {
+          "root": "libs/backend-client",
+          "targets": {
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "options": {},
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/eslint.config.js"
+              ],
+              "cache": true
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/backend-client/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true
+            },
+            "build": {
+              "executor": "@nx/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/backend-client",
+                "main": "libs/backend-client/src/index.ts",
+                "tsConfig": "libs/backend-client/tsconfig.lib.json"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            }
+          },
+          "name": "backend-client",
+          "sourceRoot": "libs/backend-client/src",
+          "projectType": "library",
+          "tags": [],
+          "implicitDependencies": []
+        }
+      },
+      "lesson-service": {
+        "name": "lesson-service",
+        "type": "app",
+        "data": {
+          "root": "apps/lesson-service",
+          "targets": {
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "options": {},
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/eslint.config.js"
+              ],
+              "cache": true
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "apps/lesson-service/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true
+            },
+            "build": {
+              "executor": "@nx/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "defaultConfiguration": "production",
+              "options": {
+                "outputPath": "dist/apps/lesson-service",
+                "main": "apps/lesson-service/src/main.ts",
+                "tsConfig": "apps/lesson-service/tsconfig.app.json"
+              },
+              "configurations": {
+                "development": {},
+                "production": {}
+              },
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            },
+            "serve": {
+              "executor": "@nx/js:node",
+              "defaultConfiguration": "development",
+              "options": {
+                "buildTarget": "lesson-service:build"
+              },
+              "configurations": {
+                "development": {
+                  "buildTarget": "lesson-service:build:development"
+                },
+                "production": {
+                  "buildTarget": "lesson-service:build:production"
+                }
+              },
+              "parallelism": true,
+              "cache": false
+            },
+            "docker-build": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "docker build -f apps/lesson-service/Dockerfile -t lesson-service ."
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false
+            }
+          },
+          "name": "lesson-service",
+          "sourceRoot": "apps/lesson-service/src",
+          "projectType": "application",
+          "tags": [],
+          "implicitDependencies": []
+        }
+      },
+      "ai-service": {
+        "name": "ai-service",
+        "type": "app",
+        "data": {
+          "root": "apps/ai-service",
+          "targets": {
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "options": {},
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/eslint.config.js"
+              ],
+              "cache": true
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "apps/ai-service/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true
+            },
+            "build": {
+              "executor": "@nx/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "defaultConfiguration": "production",
+              "options": {
+                "outputPath": "dist/apps/ai-service",
+                "main": "apps/ai-service/src/main.ts",
+                "tsConfig": "apps/ai-service/tsconfig.app.json"
+              },
+              "configurations": {
+                "development": {},
+                "production": {}
+              },
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            },
+            "serve": {
+              "executor": "@nx/js:node",
+              "defaultConfiguration": "development",
+              "options": {
+                "buildTarget": "ai-service:build"
+              },
+              "configurations": {
+                "development": {
+                  "buildTarget": "ai-service:build:development"
+                },
+                "production": {
+                  "buildTarget": "ai-service:build:production"
+                }
+              },
+              "parallelism": true,
+              "cache": false
+            },
+            "docker-build": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "docker build -f apps/ai-service/Dockerfile -t ai-service ."
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false
+            }
+          },
+          "name": "ai-service",
+          "sourceRoot": "apps/ai-service/src",
+          "projectType": "application",
+          "tags": [],
+          "implicitDependencies": []
+        }
+      },
+      "database": {
+        "name": "database",
+        "type": "lib",
+        "data": {
+          "root": "libs/database",
+          "targets": {
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "options": {},
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/eslint.config.js"
+              ],
+              "cache": true
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/database/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true
+            },
+            "build": {
+              "executor": "@nx/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/database",
+                "main": "libs/database/src/index.ts",
+                "tsConfig": "libs/database/tsconfig.lib.json"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            }
+          },
+          "name": "database",
+          "sourceRoot": "libs/database/src",
+          "projectType": "library",
+          "tags": [],
+          "implicitDependencies": []
+        }
+      },
+      "ai-core": {
+        "name": "ai-core",
+        "type": "lib",
+        "data": {
+          "root": "libs/ai-core",
+          "targets": {
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "options": {},
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/eslint.config.js"
+              ],
+              "cache": true
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/ai-core/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true
+            },
+            "build": {
+              "executor": "@nx/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/ai-core",
+                "main": "libs/ai-core/src/index.ts",
+                "tsConfig": "libs/ai-core/tsconfig.lib.json"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            }
+          },
+          "name": "ai-core",
+          "sourceRoot": "libs/ai-core/src",
+          "projectType": "library",
+          "tags": [],
+          "implicitDependencies": []
+        }
+      },
+      "common": {
+        "name": "common",
+        "type": "lib",
+        "data": {
+          "root": "libs/common",
+          "targets": {
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "options": {},
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/eslint.config.js"
+              ],
+              "cache": true
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/common/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true
+            },
+            "build": {
+              "executor": "@nx/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/common",
+                "main": "libs/common/src/index.ts",
+                "tsConfig": "libs/common/tsconfig.lib.json"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            }
+          },
+          "name": "common",
+          "sourceRoot": "libs/common/src",
+          "projectType": "library",
+          "tags": [],
+          "implicitDependencies": []
+        }
+      }
+    },
+    "dependencies": {
+      "customer-service": [
+        {
+          "source": "customer-service",
+          "target": "ai-core",
+          "type": "static"
+        },
+        {
+          "source": "customer-service",
+          "target": "database",
+          "type": "static"
+        },
+        {
+          "source": "customer-service",
+          "target": "common",
+          "type": "static"
+        }
+      ],
+      "voice-streaming": [],
+      "backend-client": [],
+      "lesson-service": [
+        {
+          "source": "lesson-service",
+          "target": "ai-core",
+          "type": "static"
+        },
+        {
+          "source": "lesson-service",
+          "target": "common",
+          "type": "static"
+        }
+      ],
+      "ai-service": [
+        {
+          "source": "ai-service",
+          "target": "ai-core",
+          "type": "static"
+        }
+      ],
+      "database": [],
+      "ai-core": [],
+      "common": []
+    }
+  }
+}

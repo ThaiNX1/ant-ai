@@ -5,17 +5,13 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/webpack:webpack",
+      "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "target": "node",
-        "compiler": "tsc",
         "outputPath": "dist/apps/customer-service",
         "main": "apps/customer-service/src/main.ts",
-        "tsConfig": "apps/customer-service/tsconfig.app.json",
-        "webpackConfig": "apps/customer-service/webpack.config.js",
-        "generatePackageJson": true
+        "tsConfig": "apps/customer-service/tsconfig.app.json"
       },
       "configurations": {
         "development": {},

@@ -4,6 +4,15 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/backend-client",
+        "main": "libs/backend-client/src/index.ts",
+        "tsConfig": "libs/backend-client/tsconfig.lib.json"
+      }
+    },
     "lint": {
       "executor": "@nx/eslint:lint"
     },

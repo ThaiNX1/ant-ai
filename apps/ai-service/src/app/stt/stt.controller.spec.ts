@@ -1,51 +1,51 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SttController } from './stt.controller';
-import { SttService } from '@ai-platform/ai-core';
+import { ISttAdapter, namedToken } from '@ai-platform/ai-core';
 
 describe('SttController', () => {
   let controller: SttController;
-  let sttService: jest.Mocked<SttService>;
+  let whisper: jest.Mocked<ISttAdapter>;
 
   beforeEach(async () => {
-    const mockSttService = {
+    const mockAdapter: jest.Mocked<ISttAdapter> = {
       transcribeAudio: jest.fn(),
-    };
+    } as unknown as jest.Mocked<ISttAdapter>;
 
     const module: TestingModule = await Test.createTestingModule({
       controllers: [SttController],
       providers: [
-        { provide: SttService, useValue: mockSttService },
+        { provide: namedToken('STT', 'openai-whisper'), useValue: mockAdapter },
       ],
     }).compile();
 
     controller = module.get<SttController>(SttController);
-    sttService = module.get(SttService) as jest.Mocked<SttService>;
+    whisper = module.get(namedToken('STT', 'openai-whisper'));
   });
 
   describe('POST /stt/transcribe', () => {
     it('should return transcribed text from audio buffer', async () => {
       const audioBuffer = Buffer.from([0x01, 0x02, 0x03, 0x04]);
-      sttService.transcribeAudio.mockResolvedValue('Hello world');
+      whisper.transcribeAudio.mockResolvedValue('Hello world');
 
       const result = await controller.transcribe(audioBuffer);
 
       expect(result).toEqual({ text: 'Hello world' });
-      expect(sttService.transcribeAudio).toHaveBeenCalledWith(audioBuffer);
+      expect(whisper.transcribeAudio).toHaveBeenCalledWith(audioBuffer);
     });
 
     it('should handle empty transcription result', async () => {
       const audioBuffer = Buffer.from([0x00]);
-      sttService.transcribeAudio.mockResolvedValue('');
+      whisper.transcribeAudio.mockResolvedValue('');
 
       const result = await controller.transcribe(audioBuffer);
 
       expect(result).toEqual({ text: '' });
-      expect(sttService.transcribeAudio).toHaveBeenCalledWith(audioBuffer);
+      expect(whisper.transcribeAudio).toHaveBeenCalledWith(audioBuffer);
     });
 
-    it('should propagate errors from SttService', async () => {
+    it('should propagate errors from adapter', async () => {
       const audioBuffer = Buffer.from([0x01]);
-      sttService.transcribeAudio.mockRejectedValue(new Error('STT API error'));
+      whisper.transcribeAudio.mockRejectedValue(new Error('STT API error'));
 
       await expect(controller.transcribe(audioBuffer)).rejects.toThrow('STT API error');
     });
