@@ -4,15 +4,19 @@ import { ITtsAdapter } from '../interfaces/tts.interface';
 import { ISttAdapter } from '../interfaces/stt.interface';
 import { IRealtimeAdapter } from '../interfaces/realtime.interface';
 import { GeminiLlmAdapter } from './gemini-llm.adapter';
+import { OpenAiLlmAdapter } from './openai-llm.adapter';
 import { ElevenLabsTtsAdapter } from './elevenlabs-tts.adapter';
 import { OpenAiSttAdapter } from './openai-stt.adapter';
 import { OpenAiRealtimeAdapter } from './openai-realtime.adapter';
+import { GoogleTtsAdapter } from './google-tts.adapter';
 
 export class AdapterFactory {
   static createLlm(config: AdapterConfig): ILlmAdapter {
     switch (config.provider) {
       case 'gemini':
         return new GeminiLlmAdapter(config);
+      case 'openai':
+        return new OpenAiLlmAdapter(config);
       default:
         throw new Error(`Unknown LLM provider: ${config.provider}`);
     }
@@ -22,6 +26,8 @@ export class AdapterFactory {
     switch (config.provider) {
       case 'elevenlabs':
         return new ElevenLabsTtsAdapter(config);
+      case 'google-tts':
+        return new GoogleTtsAdapter(config);
       default:
         throw new Error(`Unknown TTS provider: ${config.provider}`);
     }

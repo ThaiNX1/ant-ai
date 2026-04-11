@@ -16,6 +16,10 @@ async function bootstrap() {
   );
 
   app.useLogger(app.get(Logger));
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -29,6 +33,7 @@ async function bootstrap() {
 
   const port = process.env['PORT'] || 8081;
   await app.listen(port, '0.0.0.0');
+  console.log(`AI service run on port ${port}`);
 }
 
 bootstrap();

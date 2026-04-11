@@ -12,7 +12,6 @@ import * as WebSocket from 'ws';
 import {
   IRealtimeAdapter,
   AdapterFactory,
-  namedToken,
 } from '@ai-platform/ai-core';
 import type { NamedAdapterConfig, RealtimeSessionConfig } from '@ai-platform/ai-core';
 
@@ -36,8 +35,6 @@ export class RealtimeGateway
   server!: WebSocket.Server;
 
   constructor(
-    @Inject(namedToken('REALTIME', 'openai-realtime'))
-    private readonly defaultAdapter: IRealtimeAdapter,
     @Inject(REALTIME_CONFIG)
     private readonly realtimeConfig: NamedAdapterConfig,
   ) {}

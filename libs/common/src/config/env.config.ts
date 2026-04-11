@@ -3,7 +3,8 @@ import * as Joi from 'joi';
 export const envConfigSchema = Joi.object({
   GEMINI_API_KEY: Joi.string().required(),
   OPENAI_API_KEY: Joi.string().required(),
-  ELEVENLABS_API_KEY: Joi.string().required(),
+  ELEVENLABS_API_KEY: Joi.string().optional(),
+  GOOGLE_TTS_API_KEY: Joi.string().optional(),
   DB_HOST: Joi.string().required(),
   DB_PORT: Joi.number().port().default(5432),
   DB_USERNAME: Joi.string().required(),
@@ -14,7 +15,8 @@ export const envConfigSchema = Joi.object({
 export interface EnvConfig {
   GEMINI_API_KEY: string;
   OPENAI_API_KEY: string;
-  ELEVENLABS_API_KEY: string;
+  ELEVENLABS_API_KEY?: string;
+  GOOGLE_TTS_API_KEY?: string;
   DB_HOST: string;
   DB_PORT: number;
   DB_USERNAME: string;

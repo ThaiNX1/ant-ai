@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { RealtimeGateway, REALTIME_CONFIG } from './realtime.gateway';
 
 @Module({
+  imports: [],
   providers: [
     {
       provide: REALTIME_CONFIG,
@@ -17,3 +18,4 @@ import { RealtimeGateway, REALTIME_CONFIG } from './realtime.gateway';
   exports: [RealtimeGateway],
 })
 export class RealtimeModule {}
+

@@ -1,4 +1,4 @@
-import { DynamicModule, Module, Provider } from '@nestjs/common';
+import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
 import {
   AiCoreOptions,
   NamedAdapterConfig,
@@ -13,6 +13,7 @@ import {
 import { AdapterFactory } from './adapters/adapter.factory';
 import { AIConfigModule } from './config/ai-config.module';
 
+@Global()
 @Module({
   imports: [AIConfigModule],
   exports: [AIConfigModule],
@@ -79,6 +80,7 @@ export class AiCoreModule {
 
     return {
       module: AiCoreModule,
+      global: true,
       providers,
       exports: exportTokens,
     };
