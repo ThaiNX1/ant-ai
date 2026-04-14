@@ -9,18 +9,16 @@ import {
   ConnectedSocket,
 } from '@nestjs/websockets';
 import * as WebSocket from 'ws';
-import {
-  IRealtimeAdapter,
-  AdapterFactory,
-} from '@ai-platform/ai-core';
+import { AdapterFactory, IRealtimeAdapter } from '@ai-platform/ai-core';
 import type { NamedAdapterConfig, RealtimeSessionConfig } from '@ai-platform/ai-core';
+import { IncomingMessage } from 'http';
+
+export const REALTIME_CONFIGS = 'REALTIME_CONFIGS';
 
 interface ClientSession {
   adapter: IRealtimeAdapter;
   connected: boolean;
 }
-
-export const REALTIME_CONFIG = 'REALTIME_CONFIG';
 
 type WsClient = WebSocket & { id?: string };
 
@@ -35,8 +33,8 @@ export class RealtimeGateway
   server!: WebSocket.Server;
 
   constructor(
-    @Inject(REALTIME_CONFIG)
-    private readonly realtimeConfig: NamedAdapterConfig,
+    @Inject(REALTIME_CONFIGS)
+    private readonly realtimeConfigs: NamedAdapterConfig[],
   ) {}
 
   private getClientId(client: WsClient): string {
@@ -46,16 +44,32 @@ export class RealtimeGateway
     return client.id;
   }
 
-  async handleConnection(client: WsClient): Promise<void> {
+  private getConfig(provider: string): NamedAdapterConfig {
+    const config = this.realtimeConfigs.find((c) => c.provider === provider);
+    if (!config) {
+      const available = this.realtimeConfigs.map((c) => c.provider).join(', ');
+      throw new Error(
+        `Unknown realtime provider: "${provider}". Available: ${available}`,
+      );
+    }
+    return config;
+  }
+
+  async handleConnection(client: WsClient, req: IncomingMessage): Promise<void> {
     const clientId = this.getClientId(client);
-    this.logger.log(`Client connected: ${clientId}`);
+
+    // Parse provider from query string: ws://host/realtime?provider=gemini
+    const url = new URL(req.url ?? '', `http://${req.headers.host}`);
+    const provider = url.searchParams.get('provider') || 'openai';
+
+    this.logger.log(`Client connected: ${clientId} (provider: ${provider})`);
 
     try {
-      // Each client needs a fresh adapter (own WebSocket to OpenAI)
-      const adapter = AdapterFactory.createRealtime(this.realtimeConfig);
+      const config = this.getConfig(provider);
+      const adapter = AdapterFactory.createRealtime(config);
 
       const sessionConfig: RealtimeSessionConfig = {
-        model: this.realtimeConfig.model,
+        model: config.model,
       };
 
       await adapter.connect(sessionConfig);

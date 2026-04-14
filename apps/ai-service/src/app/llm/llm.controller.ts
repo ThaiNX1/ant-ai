@@ -4,7 +4,7 @@ import { GenerateDto } from './dto/generate.dto';
 import { namedToken, ILlmAdapter } from '@ai-platform/ai-core';
 
 interface MessageEvent {
-  data: string | object;
+  data: string;
   id?: string;
   type?: string;
   retry?: number;
@@ -26,10 +26,11 @@ export class LlmController {
   @Post('generate-stream')
   @Sse()
   generateStream(@Body() dto: GenerateDto): Observable<MessageEvent> {
+    const stream = this.geminiFlash.generateStream(dto.prompt, dto.options);
     return new Observable<MessageEvent>((subscriber) => {
       (async () => {
         try {
-          for await (const chunk of this.geminiFlash.generateStream(dto.prompt, dto.options)) {
+          for await (const chunk of stream) {
             subscriber.next({ data: chunk });
           }
           subscriber.complete();

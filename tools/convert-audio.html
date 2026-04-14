@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>MP3 → PCM Base64 Converter</title></head>
+<body>
+<h3>Convert MP3 → PCM 16kHz 16-bit mono → Base64</h3>
+<input type="file" id="file" accept="audio/*">
+<br><br>
+<button onclick="convert()">Convert</button>
+<br><br>
+<textarea id="output" rows="5" cols="80" placeholder="Base64 output will appear here..."></textarea>
+<br>
+<div id="status"></div>
+
+<script>
+async function convert() {
+  const file = document.getElementById('file').files[0];
+  if (!file) { alert('Select a file first'); return; }
+
+  document.getElementById('status').textContent = 'Converting...';
+
+  const arrayBuffer = await file.arrayBuffer();
+  const audioCtx = new AudioContext({ sampleRate: 16000 });
+  const decoded = await audioCtx.decodeAudioData(arrayBuffer);
+
+  // Mix down to mono
+  const mono = new Float32Array(decoded.length);
+  for (let ch = 0; ch < decoded.numberOfChannels; ch++) {
+    const channelData = decoded.getChannelData(ch);
+    for (let i = 0; i < decoded.length; i++) {
+      mono[i] += channelData[i] / decoded.numberOfChannels;
+    }
+  }
+
+  // Convert Float32 → Int16 PCM
+  const pcm = new Int16Array(mono.length);
+  for (let i = 0; i < mono.length; i++) {
+    const s = Math.max(-1, Math.min(1, mono[i]));
+    pcm[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+  }
+
+  // To Base64
+  const bytes = new Uint8Array(pcm.buffer);
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  const b64 = btoa(binary);
+
+  document.getElementById('output').value = b64;
+  document.getElementById('status').textContent =
+    `Done! ${decoded.duration.toFixed(2)}s, ${pcm.length} samples, base64 length: ${b64.length}`;
+}
+</script>
+</body>
+</html>

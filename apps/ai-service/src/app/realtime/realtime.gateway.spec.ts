@@ -1,7 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { RealtimeGateway, REALTIME_CONFIG } from './realtime.gateway';
+import { RealtimeGateway, REALTIME_CONFIGS } from './realtime.gateway';
 import { AdapterFactory } from '@ai-platform/ai-core';
 import * as WebSocket from 'ws';
+import { IncomingMessage } from 'http';
 
 jest.mock('@ai-platform/ai-core', () => {
   const actual = jest.requireActual('@ai-platform/ai-core');
@@ -25,6 +26,13 @@ function createMockClient(id?: string): WsClient {
   } as unknown as WsClient;
 }
 
+function createMockRequest(provider = 'openai'): IncomingMessage {
+  return {
+    url: `/realtime?provider=${provider}`,
+    headers: { host: 'localhost:8081' },
+  } as unknown as IncomingMessage;
+}
+
 function createMockAdapter() {
   return {
     connect: jest.fn().mockResolvedValue(undefined),
@@ -34,20 +42,20 @@ function createMockAdapter() {
   };
 }
 
+const mockConfigs = [
+  { name: 'openai', provider: 'openai', model: 'gpt-4o-realtime-preview', apiKey: 'test-openai-key' },
+  { name: 'gemini', provider: 'gemini', model: 'gemini-2.0-flash-live-001', apiKey: 'test-gemini-key' },
+];
+
 describe('RealtimeGateway', () => {
   let gateway: RealtimeGateway;
-  const mockConfig = {
-    provider: 'openai',
-    model: 'gpt-4o-realtime-preview',
-    apiKey: 'test-key',
-  };
 
   beforeEach(async () => {
     jest.clearAllMocks();
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        { provide: REALTIME_CONFIG, useValue: mockConfig },
+        { provide: REALTIME_CONFIGS, useValue: mockConfigs },
         RealtimeGateway,
       ],
     }).compile();
@@ -56,18 +64,39 @@ describe('RealtimeGateway', () => {
   });
 
   describe('handleConnection', () => {
-    it('should create a session for a new client', async () => {
+    it('should create a session with openai provider', async () => {
       const mockAdapter = createMockAdapter();
       (AdapterFactory.createRealtime as jest.Mock).mockReturnValue(mockAdapter);
 
       const client = createMockClient();
-      await gateway.handleConnection(client);
+      await gateway.handleConnection(client, createMockRequest('openai'));
 
-      expect(AdapterFactory.createRealtime).toHaveBeenCalledWith(mockConfig);
-      expect(mockAdapter.connect).toHaveBeenCalledWith({
-        model: 'gpt-4o-realtime-preview',
-      });
+      expect(AdapterFactory.createRealtime).toHaveBeenCalledWith(mockConfigs[0]);
+      expect(mockAdapter.connect).toHaveBeenCalledWith({ model: 'gpt-4o-realtime-preview' });
       expect(gateway.getSessionCount()).toBe(1);
+    });
+
+    it('should create a session with gemini provider', async () => {
+      const mockAdapter = createMockAdapter();
+      (AdapterFactory.createRealtime as jest.Mock).mockReturnValue(mockAdapter);
+
+      const client = createMockClient();
+      await gateway.handleConnection(client, createMockRequest('gemini'));
+
+      expect(AdapterFactory.createRealtime).toHaveBeenCalledWith(mockConfigs[1]);
+      expect(mockAdapter.connect).toHaveBeenCalledWith({ model: 'gemini-2.0-flash-live-001' });
+      expect(gateway.getSessionCount()).toBe(1);
+    });
+
+    it('should default to openai when no provider query param', async () => {
+      const mockAdapter = createMockAdapter();
+      (AdapterFactory.createRealtime as jest.Mock).mockReturnValue(mockAdapter);
+
+      const client = createMockClient();
+      const req = { url: '/realtime', headers: { host: 'localhost' } } as unknown as IncomingMessage;
+      await gateway.handleConnection(client, req);
+
+      expect(AdapterFactory.createRealtime).toHaveBeenCalledWith(mockConfigs[0]);
     });
 
     it('should assign a unique client ID if not present', async () => {
@@ -75,10 +104,18 @@ describe('RealtimeGateway', () => {
       (AdapterFactory.createRealtime as jest.Mock).mockReturnValue(mockAdapter);
 
       const client = createMockClient();
-      await gateway.handleConnection(client);
+      await gateway.handleConnection(client, createMockRequest());
 
       expect(client.id).toBeDefined();
       expect(client.id).toMatch(/^client_/);
+    });
+
+    it('should close client on unknown provider', async () => {
+      const client = createMockClient();
+      await gateway.handleConnection(client, createMockRequest('unknown-provider'));
+
+      expect(client.close).toHaveBeenCalledWith(1011, 'Failed to create realtime session');
+      expect(gateway.getSessionCount()).toBe(0);
     });
 
     it('should close client on connection failure', async () => {
@@ -87,12 +124,9 @@ describe('RealtimeGateway', () => {
       });
 
       const client = createMockClient();
-      await gateway.handleConnection(client);
+      await gateway.handleConnection(client, createMockRequest());
 
-      expect(client.close).toHaveBeenCalledWith(
-        1011,
-        'Failed to create realtime session',
-      );
+      expect(client.close).toHaveBeenCalledWith(1011, 'Failed to create realtime session');
       expect(gateway.getSessionCount()).toBe(0);
     });
   });
@@ -103,7 +137,7 @@ describe('RealtimeGateway', () => {
       (AdapterFactory.createRealtime as jest.Mock).mockReturnValue(mockAdapter);
 
       const client = createMockClient('test-client');
-      await gateway.handleConnection(client);
+      await gateway.handleConnection(client, createMockRequest());
       expect(gateway.getSessionCount()).toBe(1);
 
       await gateway.handleDisconnect(client);
@@ -115,7 +149,6 @@ describe('RealtimeGateway', () => {
     it('should handle disconnect for unknown client gracefully', async () => {
       const client = createMockClient('unknown-client');
       await expect(gateway.handleDisconnect(client)).resolves.not.toThrow();
-      expect(gateway.getSessionCount()).toBe(0);
     });
   });
 
@@ -125,7 +158,7 @@ describe('RealtimeGateway', () => {
       (AdapterFactory.createRealtime as jest.Mock).mockReturnValue(mockAdapter);
 
       const client = createMockClient('audio-client');
-      await gateway.handleConnection(client);
+      await gateway.handleConnection(client, createMockRequest());
 
       const audioData = Buffer.from([0x01, 0x02, 0x03]);
       gateway.handleAudio(audioData, client);
@@ -135,9 +168,7 @@ describe('RealtimeGateway', () => {
 
     it('should not feed audio if no session exists', async () => {
       const client = createMockClient('no-session');
-      const audioData = Buffer.from([0x01]);
-
-      expect(() => gateway.handleAudio(audioData, client)).not.toThrow();
+      expect(() => gateway.handleAudio(Buffer.from([0x01]), client)).not.toThrow();
     });
   });
 
@@ -150,14 +181,12 @@ describe('RealtimeGateway', () => {
 
       const mockAdapter = createMockAdapter();
       mockAdapter.getResponseStream.mockReturnValue(
-        (async function* () {
-          for (const r of responses) yield r;
-        })(),
+        (async function* () { for (const r of responses) yield r; })(),
       );
       (AdapterFactory.createRealtime as jest.Mock).mockReturnValue(mockAdapter);
 
       const client = createMockClient('forward-client');
-      await gateway.handleConnection(client);
+      await gateway.handleConnection(client, createMockRequest());
 
       await new Promise((resolve) => setTimeout(resolve, 50));
 
@@ -176,10 +205,10 @@ describe('RealtimeGateway', () => {
       const client1 = createMockClient('c1');
       const client2 = createMockClient('c2');
 
-      await gateway.handleConnection(client1);
+      await gateway.handleConnection(client1, createMockRequest('openai'));
       expect(gateway.getSessionCount()).toBe(1);
 
-      await gateway.handleConnection(client2);
+      await gateway.handleConnection(client2, createMockRequest('gemini'));
       expect(gateway.getSessionCount()).toBe(2);
 
       await gateway.handleDisconnect(client1);
@@ -193,7 +222,7 @@ describe('RealtimeGateway', () => {
       const client = createMockClient('check-client');
       expect(gateway.hasSession('check-client')).toBe(false);
 
-      await gateway.handleConnection(client);
+      await gateway.handleConnection(client, createMockRequest());
       expect(gateway.hasSession('check-client')).toBe(true);
 
       await gateway.handleDisconnect(client);

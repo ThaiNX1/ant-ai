@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@ai-platform/ai-core": [
+        "dist/libs/ai-core"
+      ],
+      "@ai-platform/common": [
+        "dist/libs/common/src/index"
+      ],
+      "@ai-platform/database": [
+        "dist/libs/database/src/index"
+      ],
+      "@ai-platform/backend-client": [
+        "dist/libs/backend-client/src/index"
+      ]
+    }
+  },
+  "extends": "..\\..\\..\\..\\apps\\ai-service\\tsconfig.app.json"
+}

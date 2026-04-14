@@ -1,0 +1,81 @@
+﻿{
+  "info": {
+    "name": "AI Service - Realtime WebSocket",
+    "_postman_id": "ai-service-realtime",
+    "description": "WebSocket testing for RealtimeGateway. Connect with ?provider=openai or ?provider=gemini.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Connect - OpenAI Realtime",
+      "protocolProfileBehavior": {
+        "protocolVersion": "websocket"
+      },
+      "request": {
+        "url": {
+          "raw": "ws://localhost:8081/realtime?provider=openai",
+          "protocol": "ws",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["realtime"],
+          "query": [{ "key": "provider", "value": "openai" }]
+        }
+      },
+      "messages": [
+        {
+          "name": "Send audio chunk",
+          "value": "{\"event\":\"audio\",\"data\":\"AAECBAUGB\"}",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "Connect - Gemini Live",
+      "protocolProfileBehavior": {
+        "protocolVersion": "websocket"
+      },
+      "request": {
+        "url": {
+          "raw": "ws://localhost:8081/realtime?provider=gemini",
+          "protocol": "ws",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["realtime"],
+          "query": [{ "key": "provider", "value": "gemini" }]
+        }
+      },
+      "messages": [
+        {
+          "name": "Send audio chunk",
+          "value": "{\"event\":\"audio\",\"data\":\"AAECBAUGB\"}",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "Connect - Invalid provider (expect close 1011)",
+      "protocolProfileBehavior": {
+        "protocolVersion": "websocket"
+      },
+      "request": {
+        "url": {
+          "raw": "ws://localhost:8081/realtime?provider=invalid",
+          "protocol": "ws",
+          "host": ["localhost"],
+          "port": "8081",
+          "path": ["realtime"],
+          "query": [{ "key": "provider", "value": "invalid" }]
+        }
+      },
+      "messages": [],
+      "response": []
+    }
+  ],
+  "variable": [
+    { "key": "host", "value": "localhost:8081" }
+  ]
+}
