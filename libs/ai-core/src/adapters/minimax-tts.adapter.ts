@@ -7,8 +7,9 @@ import { AdapterError } from '../errors/adapter.error';
 
 const MINIMAX_T2A_URL = 'https://api.minimax.io/v1/t2a_v2';
 const MINIMAX_WS_URL = 'wss://api.minimax.io/ws/v1/t2a_v2';
-const DEFAULT_VOICE_ID = 'male-qn-qingse';
-const DEFAULT_MODEL = 'speech-02-turbo';
+const TOKEN = 'sk-api-oNxE3S5Ax04B0XZGTtqdnFgE74u4TzEatcc2Imy2s_YN1rKH9ZpDYh6vV0f8ZDtX3leTwqCME4fDwe9o2QdCVxcdu_CNGuWlvgUeSQ44BucS8aDt4ekxGKU';
+const DEFAULT_VOICE_ID = 'Denden001';
+const DEFAULT_MODEL = 'speech-02-hd';
 
 interface MinimaxVoiceSetting {
   voice_id: string;
@@ -130,27 +131,26 @@ export class MinimaxTtsAdapter implements ITtsAdapter {
       try {
         const msg = JSON.parse(raw.toString()) as Record<string, unknown>;
         const event = msg['event'] as string | undefined;
-        console.log('========event_minimax========', event)
         if (event === 'connected_success') {
-          // ws.send(
-          //   JSON.stringify({
-          //     event: 'task_start',
-          //     model: this.model,
-          //     voice_setting: this.buildVoiceSetting(options),
-          //     audio_setting: this.buildAudioSetting(options),
-          //   }),
-          // );
+          ws.send(
+            JSON.stringify({
+              event: 'task_start',
+              model: this.model,
+              voice_setting: this.buildVoiceSetting(options),
+              audio_setting: this.buildAudioSetting(options),
+            }),
+          );
           return;
         }
 
         if (event === 'task_started') {
-          // ws.send(JSON.stringify({ event: 'task_continue', text }));
-          // ws.send(JSON.stringify({ event: 'task_finish' }));
+          ws.send(JSON.stringify({ event: 'task_continue', text }));
+          ws.send(JSON.stringify({ event: 'task_finish' }));
           return;
         }
 
         if (event === 'task_failed') {
-          // enqueue(new AdapterError('TASK_FAILED', JSON.stringify(msg), 'minimax'));
+          enqueue(new AdapterError('TASK_FAILED', JSON.stringify(msg), 'minimax'));
           return;
         }
 

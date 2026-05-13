@@ -18,8 +18,8 @@ COPY apps/voice-streaming/ ./
 RUN groupadd -r appgroup && useradd -r -g appgroup appuser
 USER appuser
 
-# Expose UDP ports: RTP (5004) and Control (7000)
+# Expose RTP (5004/UDP) and HTTP control server (7000/TCP)
 EXPOSE 5004/udp
-EXPOSE 7000/udp
+EXPOSE 7000/tcp
 
 CMD ["python", "-m", "voice_streaming"]

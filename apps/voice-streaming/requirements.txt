@@ -1,6 +1,11 @@
 # voice-streaming dependencies
 aiohttp>=3.9.0
+opuslib>=3.0.0
+
+# No Deepgram SDK needed — STT streaming goes through ai-service via WebSocket
+# aiohttp is used by SttStreamClient for the WebSocket connection
 
 # testing
 pytest>=7.0.0
 pytest-asyncio>=0.23.0
+hypothesis>=6.0.0

@@ -11,3 +11,11 @@ export const REALTIME_ADAPTER = 'REALTIME_ADAPTER';
 export function namedToken(type: 'LLM' | 'TTS' | 'STT' | 'REALTIME', name: string): string {
   return `${type}_${name}`;
 }
+
+/**
+ * Generate a named injection token for raw adapter config.
+ * Usage: @Inject(configToken('STT', 'deepgram')) → NamedAdapterConfig
+ */
+export function configToken(type: 'LLM' | 'TTS' | 'STT' | 'REALTIME', name: string): string {
+  return `${type}_CONFIG_${name}`;
+}

@@ -9,6 +9,7 @@
     "start": "nx serve"
   },
   "dependencies": {
+    "@google-cloud/speech": "^7.3.0",
     "@google-cloud/text-to-speech": "^6.4.0",
     "@google/genai": "^1.48.0",
     "@keyv/redis": "^4.6.0",

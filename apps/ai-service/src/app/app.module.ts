@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { AiCoreModule } from '@ai-platform/ai-core';
-import { envConfigSchema } from '@ai-platform/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LlmModule } from './llm/llm.module';
@@ -15,16 +14,23 @@ import { HealthModule } from './health/health.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      validationSchema: envConfigSchema,
+      envFilePath: [
+        'apps/ai-service/.env'
+      ],
     }),
     LoggerModule.forRoot({
       pinoHttp: {
-        transport:
-          process.env['NODE_ENV'] !== 'production'
-            ? { target: 'pino-pretty', options: { colorize: true } }
-            : undefined,
         level: process.env['LOG_LEVEL'] || 'info',
         autoLogging: true,
+        hooks: {
+          logMethod(args: any, method: any, level: any) {
+            const context = typeof args[0] === 'object' ? args[0].context : undefined;
+            if (context === 'RoutesResolver' || context === 'RouterExplorer') {
+              return; // Bỏ qua không in log này
+            }
+            return method.apply(this, args);
+          },
+        },
         serializers: {
           req(req: Record<string, unknown>) {
             return {
@@ -45,29 +51,47 @@ import { HealthModule } from './health/health.module';
       llm: [
         {
           name: 'gemini-flash',
-          provider: process.env['LLM_PROVIDER'] || 'gemini',
+          provider: 'gemini',
           model: 'gemini-2.5-flash',
-          apiKey: process.env['GEMINI_API_KEY'] || '',
+          apiKey: 'AIzaSyC5hkp5q92rny_04cI9LEFBLo6A8dLRK9A',
+        },
+        {
+          name: 'openai-gpt-5.2',
+          provider: 'openai',
+          model: 'gpt-5.2',
+          apiKey: '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',
         },
       ],
-      tts: {
-        name: 'elevenlabs',
-        provider: process.env['TTS_PROVIDER'] || 'elevenlabs',
-        model: process.env['TTS_MODEL'] || 'eleven_multilingual_v2',
-        apiKey: process.env['ELEVENLABS_API_KEY'] || '',
-      },
-      stt: {
-        name: 'openai-whisper',
-        provider: process.env['STT_PROVIDER'] || 'openai',
-        model: process.env['STT_MODEL'] || 'whisper-1',
-        apiKey: process.env['OPENAI_API_KEY'] || '',
-      },
-      realtime: {
-        name: 'openai-realtime',
-        provider: process.env['REALTIME_PROVIDER'] || 'openai',
-        model: process.env['REALTIME_MODEL'] || 'gpt-4o-realtime-preview',
-        apiKey: process.env['OPENAI_API_KEY'] || '',
-      },
+      tts: [
+        {
+          name: 'google-tts',
+          provider: 'google-tts',
+          model: 'google-tts',
+          apiKey: 'AIzaSyC5hkp5q92rny_04cI9LEFBLo6A8dLRK9A',
+        },
+        {
+          name: 'minimax',
+          provider: 'minimax',
+          model: 'speech-02-hd',
+          apiKey: 'sk-api-oNxE3S5Ax04B0XZGTtqdnFgE74u4TzEatcc2Imy2s_YN1rKH9ZpDYh6vV0f8ZDtX3leTwqCME4fDwe9o2QdCVxcdu_CNGuWlvgUeSQ44BucS8aDt4ekxGKU',
+        }
+      ],
+      stt: [
+        {
+          name: 'openai-whisper',
+          provider: 'openai',
+          model: 'whisper-1',
+          apiKey: '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',
+        },
+        {
+          name: 'deepgram',
+          provider: 'deepgram',
+          model: 'nova-3',
+          apiKey: 'e73ea6ad2e956c8bc9fc900077e914bc035e60ba',
+        },
+      ],
+      // Realtime adapters are NOT registered here as singletons —
+      // RealtimeGateway creates a fresh adapter per WebSocket client connection.
     }),
     LlmModule,
     TtsModule,
@@ -78,4 +102,4 @@ import { HealthModule } from './health/health.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
