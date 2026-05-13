@@ -9,7 +9,6 @@ import {
   STT_ADAPTER,
   REALTIME_ADAPTER,
   namedToken,
-  configToken,
 } from './constants/injection-tokens';
 import { AdapterFactory } from './adapters/adapter.factory';
 import { AIConfigModule } from './config/ai-config.module';
@@ -103,21 +102,13 @@ export class AiCoreModule {
   ): void {
     configs.forEach((config, index) => {
       const token = namedToken(type, config.name);
-      const cfgToken = configToken(type, config.name);
 
-      // Register named provider (adapter instance)
+      // Register named provider
       providers.push({
         provide: token,
         useFactory: () => factory(config),
       });
       exportTokens.push(token);
-
-      // Register raw config for per-connection adapters (e.g. STT streaming)
-      providers.push({
-        provide: cfgToken,
-        useValue: config,
-      });
-      exportTokens.push(cfgToken);
 
       // First adapter also gets the default token for backward compatibility
       if (index === 0) {

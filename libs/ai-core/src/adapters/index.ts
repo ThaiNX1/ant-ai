@@ -7,6 +7,3 @@ export { OpenAiSttAdapter } from './openai-stt.adapter';
 export { OpenAiRealtimeAdapter } from './openai-realtime.adapter';
 export { GoogleTtsAdapter } from './google-tts.adapter';
 export { MinimaxTtsAdapter } from './minimax-tts.adapter';
-export { GoogleSttAdapter } from './google-stt.adapter';
-export { DeepgramSttAdapter } from './deepgram-stt.adapter';
-export { DeepgramSttStreamAdapter } from './deepgram-stt-stream.adapter';

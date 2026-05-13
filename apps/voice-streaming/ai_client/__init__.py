@@ -5,7 +5,6 @@ from .ai_service_client import AiServiceClient
 from .llm_client import LlmClient
 from .tts_client import TtsClient
 from .realtime_client import RealtimeClient
-from .stt_stream_client import SttStreamClient
 
 __all__ = [
     "AiServiceClient",
@@ -15,5 +14,4 @@ __all__ = [
     "LlmClient",
     "TtsClient",
     "RealtimeClient",
-    "SttStreamClient",
 ]

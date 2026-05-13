@@ -3,7 +3,6 @@ import { ILlmAdapter } from '../interfaces/llm.interface';
 import { ITtsAdapter } from '../interfaces/tts.interface';
 import { ISttAdapter } from '../interfaces/stt.interface';
 import { IRealtimeAdapter } from '../interfaces/realtime.interface';
-import { ISttStreamAdapter } from '../interfaces/stt-stream.interface';
 import { GeminiLlmAdapter } from './gemini-llm.adapter';
 import { OpenAiLlmAdapter } from './openai-llm.adapter';
 import { ElevenLabsTtsAdapter } from './elevenlabs-tts.adapter';
@@ -12,9 +11,6 @@ import { OpenAiRealtimeAdapter } from './openai-realtime.adapter';
 import { GoogleTtsAdapter } from './google-tts.adapter';
 import { GeminiRealtimeAdapter } from './gemini-realtime.adapter';
 import { MinimaxTtsAdapter } from './minimax-tts.adapter';
-import { GoogleSttAdapter } from './google-stt.adapter';
-import { DeepgramSttAdapter } from './deepgram-stt.adapter';
-import { DeepgramSttStreamAdapter } from './deepgram-stt-stream.adapter';
 
 export class AdapterFactory {
   static createLlm(config: AdapterConfig): ILlmAdapter {
@@ -45,21 +41,8 @@ export class AdapterFactory {
     switch (config.provider) {
       case 'openai':
         return new OpenAiSttAdapter(config);
-      case 'google-stt':
-        return new GoogleSttAdapter(config);
-      case 'deepgram':
-        return new DeepgramSttAdapter(config);
       default:
         throw new Error(`Unknown STT provider: ${config.provider}`);
-    }
-  }
-
-  static createSttStream(config: AdapterConfig): ISttStreamAdapter {
-    switch (config.provider) {
-      case 'deepgram':
-        return new DeepgramSttStreamAdapter(config);
-      default:
-        throw new Error(`Unknown STT Stream provider: ${config.provider}`);
     }
   }
 
