@@ -7,3 +7,4 @@ export type { LlmOptions } from './llm-options.interface';
 export type { TtsOptions } from './tts-options.interface';
 export type { SttOptions } from './stt-options.interface';
 export type { RealtimeSessionConfig, RealtimeResponse } from './realtime-types.interface';
+export type { ISttStreamAdapter, SttStreamOptions, TranscriptEvent, TranscriptCallback } from './stt-stream.interface';

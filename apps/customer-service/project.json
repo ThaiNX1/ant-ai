@@ -11,10 +11,13 @@
       "options": {
         "outputPath": "dist/apps/customer-service",
         "main": "apps/customer-service/src/main.ts",
-        "tsConfig": "apps/customer-service/tsconfig.app.json"
+        "tsConfig": "apps/customer-service/tsconfig.app.json",
+        "watch": false
       },
       "configurations": {
-        "development": {},
+        "development": {
+          "watch": true
+        },
         "production": {}
       }
     },
@@ -22,14 +25,17 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "customer-service:build"
+        "buildTarget": "customer-service:build",
+        "watch": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "customer-service:build:development"
+          "buildTarget": "customer-service:build:development",
+          "watch": true
         },
         "production": {
-          "buildTarget": "customer-service:build:production"
+          "buildTarget": "customer-service:build:production",
+          "watch": false
         }
       }
     },

@@ -11,10 +11,13 @@
       "options": {
         "outputPath": "dist/apps/lesson-service",
         "main": "apps/lesson-service/src/main.ts",
-        "tsConfig": "apps/lesson-service/tsconfig.app.json"
+        "tsConfig": "apps/lesson-service/tsconfig.app.json",
+        "watch": false
       },
       "configurations": {
-        "development": {},
+        "development": {
+          "watch": true
+        },
         "production": {}
       }
     },
@@ -22,14 +25,17 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "lesson-service:build"
+        "buildTarget": "lesson-service:build",
+        "watch": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "lesson-service:build:development"
+          "buildTarget": "lesson-service:build:development",
+          "watch": true
         },
         "production": {
-          "buildTarget": "lesson-service:build:production"
+          "buildTarget": "lesson-service:build:production",
+          "watch": false
         }
       }
     },

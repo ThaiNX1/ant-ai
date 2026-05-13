@@ -5,10 +5,14 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { Logger } from 'nestjs-pino';
+import { config } from 'dotenv';
 import { AppModule } from './app/app.module';
 import { GlobalExceptionFilter } from './app/filters/global-exception.filter';
 
 import { WsAdapter } from '@nestjs/platform-ws';
+
+// Load .env before anything reads process.env
+config({ path: 'apps/ai-service/.env' });
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
