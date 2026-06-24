@@ -22,4 +22,4 @@ USER appuser
 EXPOSE 5004/udp
 EXPOSE 7000/tcp
 
-CMD ["python", "-m", "voice_streaming"]
+CMD ["python", "main.py"]
