@@ -205,7 +205,7 @@ upstream ant_ai_service {
 
 server {
     listen 80;
-    server_name ai.example.com;
+    server_name ai.gochek.vn;
 
     client_max_body_size 50M;
 
@@ -238,7 +238,7 @@ Cài SSL sau khi DNS đã trỏ về Elastic IP:
 
 ```bash
 sudo dnf install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d ai.example.com
+sudo certbot --nginx -d ai.gochek.vn
 sudo certbot renew --dry-run
 ```
 

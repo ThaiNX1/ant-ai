@@ -31,7 +31,7 @@ describe('OpenAiSttAdapter', () => {
     it('should return transcribed text', async () => {
       mockCreate.mockResolvedValue('Hello world');
       const result = await adapter.transcribeAudio(Buffer.from('audio-data'));
-      expect(result).toBe('Hello world');
+      expect(result).toEqual({ text: 'Hello world' });
     });
 
     it('should throw AdapterError on API failure', async () => {

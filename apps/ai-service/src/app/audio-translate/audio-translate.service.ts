@@ -9,6 +9,7 @@ import {
 export interface TranslateOptions {
   sourceLanguage: string;
   targetLanguage: string;
+  sourceLanguages?: string[];
   voiceId?: string;
   audioFormat?: string;
   outputFormat?: string;
@@ -45,10 +46,17 @@ export class AudioTranslateService {
 
     // Step 1: STT — transcribe audio to text
     this.logger.log(`[STT] Starting transcription (${audioBuffer.length} bytes)... ${JSON.stringify(options)}`);
-    const originalText = await this.sttAdapter.transcribeAudio(audioBuffer, {
-      language: options.sourceLanguage,
+    const transcription = await this.sttAdapter.transcribeAudio(audioBuffer, {
+      language: options.sourceLanguages?.length ? undefined : options.sourceLanguage,
+      detectLanguage: Boolean(options.sourceLanguages?.length),
+      detectLanguages: options.sourceLanguages,
       format: options.audioFormat,
     });
+    const originalText = transcription.text;
+    const detectedLanguage = transcription.detectedLanguage;
+    const targetLanguage = options.sourceLanguages?.find(
+      (lang) => lang !== detectedLanguage,
+    );
     this.logger.log(`[STT] Done in ${Date.now() - startTime}ms: "${originalText.substring(0, 100)}..."`);
 
     if (!originalText.trim()) {
@@ -59,8 +67,8 @@ export class AudioTranslateService {
     const translateStart = Date.now();
     const translatedText = await this.translateText(
       originalText,
-      options.sourceLanguage,
-      options.targetLanguage,
+      detectedLanguage || options.sourceLanguage,
+      targetLanguage || options.targetLanguage,
     );
     this.logger.log(`[LLM] Translation done in ${Date.now() - translateStart}ms - ${translatedText}`);
 
@@ -91,10 +99,17 @@ export class AudioTranslateService {
     options: TranslateOptions,
   ): AsyncIterable<Buffer> {
     // Step 1: STT
-    const originalText = await this.sttAdapter.transcribeAudio(audioBuffer, {
-      language: options.sourceLanguage,
+    const transcription = await this.sttAdapter.transcribeAudio(audioBuffer, {
+      language: options.sourceLanguages?.length ? undefined : options.sourceLanguage,
+      detectLanguage: Boolean(options.sourceLanguages?.length),
+      detectLanguages: options.sourceLanguages,
       format: options.audioFormat,
     });
+    const originalText = transcription.text;
+    const detectedLanguage = transcription.detectedLanguage;
+    const targetLanguage = options.sourceLanguages?.find(
+      (lang) => lang !== detectedLanguage,
+    );
 
     if (!originalText.trim()) {
       throw new Error('STT returned empty transcript.');
@@ -103,8 +118,8 @@ export class AudioTranslateService {
     // Step 2: LLM translate
     const translatedText = await this.translateText(
       originalText,
-      options.sourceLanguage,
-      options.targetLanguage,
+      detectedLanguage || options.sourceLanguage,
+      targetLanguage || options.targetLanguage,
     );
 
     // Step 3: TTS stream

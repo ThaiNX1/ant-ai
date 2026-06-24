@@ -46,6 +46,12 @@ async function bootstrap() {
 
   app.useGlobalFilters(new GlobalExceptionFilter());
   app.setGlobalPrefix('api/v1');
+
+  // Health check
+  app.getHttpAdapter().get('/health', (_req, res) => {
+    res.status(200).send('OK');
+  });
+
   const port = process.env['PORT'] || 8081;
   await app.listen(port, '0.0.0.0');
   console.log(`AI service run on port http://localhost:${port}`);

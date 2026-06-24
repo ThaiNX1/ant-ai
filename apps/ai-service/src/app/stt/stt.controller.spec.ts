@@ -25,7 +25,7 @@ describe('SttController', () => {
   describe('POST /stt/transcribe', () => {
     it('should return transcribed text from audio buffer', async () => {
       const audioBuffer = Buffer.from([0x01, 0x02, 0x03, 0x04]);
-      whisper.transcribeAudio.mockResolvedValue('Hello world');
+      whisper.transcribeAudio.mockResolvedValue({ text: 'Hello world' });
 
       const result = await controller.transcribe(audioBuffer);
 
@@ -35,12 +35,29 @@ describe('SttController', () => {
 
     it('should handle empty transcription result', async () => {
       const audioBuffer = Buffer.from([0x00]);
-      whisper.transcribeAudio.mockResolvedValue('');
+      whisper.transcribeAudio.mockResolvedValue({ text: '' });
 
       const result = await controller.transcribe(audioBuffer);
 
       expect(result).toEqual({ text: '' });
       expect(whisper.transcribeAudio).toHaveBeenCalledWith(audioBuffer);
+    });
+
+    it('should return language detection metadata when available', async () => {
+      const audioBuffer = Buffer.from([0x01, 0x02]);
+      whisper.transcribeAudio.mockResolvedValue({
+        text: 'xin chao',
+        detectedLanguage: 'vi',
+        languageConfidence: 0.97,
+      });
+
+      const result = await controller.transcribe(audioBuffer);
+
+      expect(result).toEqual({
+        text: 'xin chao',
+        detectedLanguage: 'vi',
+        languageConfidence: 0.97,
+      });
     });
 
     it('should propagate errors from adapter', async () => {
