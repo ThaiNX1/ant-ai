@@ -255,7 +255,8 @@ curl -s http://127.0.0.1:8081/api/v1/health
 Từ internet:
 
 ```bash
-curl -s https://ai.example.com/health
+curl -i https://ai.gochek.vn/api/v1/health
+curl -i https://ai.gochek.vn/health
 ```
 
 ## 9. Restart, redeploy, rollback
@@ -287,6 +288,34 @@ docker run -d \
 ```
 
 ## 10. Troubleshooting
+
+### Public URL trả 502 Bad Gateway
+
+502 thường nghĩa là Nginx chạy được nhưng không kết nối được tới upstream `127.0.0.1:8081`.
+
+Chạy trực tiếp trên EC2:
+
+```bash
+# 1. Container có đang chạy không?
+docker ps --filter name=ant-ai-service
+docker ps -a --filter name=ant-ai-service
+
+# 2. App có listen ở port 8081 không?
+curl -i http://127.0.0.1:8081/health
+curl -i http://127.0.0.1:8081/api/v1/health
+
+# 3. Xem log app nếu container exit/crash
+docker logs ant-ai-service --tail 200
+
+# 4. Xem Nginx đang proxy lỗi gì
+sudo tail -n 100 /var/log/nginx/error.log
+
+# 5. Kiểm tra Nginx config và reload
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+Nếu `curl http://127.0.0.1:8081/...` fail, lỗi nằm ở container/app/env/image. Nếu local curl OK nhưng public vẫn 502, lỗi nằm ở Nginx config hoặc Nginx chưa reload đúng file.
 
 Docker không pull được từ ECR:
 
