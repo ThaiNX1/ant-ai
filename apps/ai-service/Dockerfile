@@ -27,6 +27,15 @@ WORKDIR /app
 COPY --from=build /app/dist/ ./dist/
 COPY --from=build /app/node_modules/ ./node_modules/
 
+# Nx preserves workspace import names (for example @ai-platform/ai-core)
+# in the compiled CommonJS output. Expose built workspace libs through
+# node_modules so Node can resolve those package names at runtime.
+RUN mkdir -p node_modules/@ai-platform && \
+  ln -s /app/dist/libs/ai-core node_modules/@ai-platform/ai-core && \
+  ln -s /app/dist/libs/common node_modules/@ai-platform/common && \
+  if [ -d /app/dist/libs/database ]; then ln -s /app/dist/libs/database node_modules/@ai-platform/database; fi && \
+  if [ -d /app/dist/libs/backend-client ]; then ln -s /app/dist/libs/backend-client node_modules/@ai-platform/backend-client; fi
+
 # Create non-root user for security
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
