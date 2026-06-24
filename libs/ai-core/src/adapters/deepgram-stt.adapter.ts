@@ -24,7 +24,7 @@ export class DeepgramSttAdapter implements ISttAdapter {
         method: 'POST',
         headers: {
           'Authorization': `Token ${this.config.apiKey}`,
-          'Content-Type': contentType,
+          ...(contentType ? { 'Content-Type': contentType } : {}),
         },
         body: audio,
       });
@@ -64,11 +64,15 @@ export class DeepgramSttAdapter implements ISttAdapter {
     return url;
   }
 
-  private mapContentType(format?: string): string {
+  private mapContentType(format?: string): string | undefined {
     switch (format?.toLowerCase()) {
       case 'wav':
-      case 'linear16':
         return 'audio/wav';
+      case 'pcm':
+      case 'linear16':
+      case 'raw':
+      case 's16le':
+        return 'application/octet-stream';
       case 'flac':
         return 'audio/flac';
       case 'mp3':
@@ -79,10 +83,18 @@ export class DeepgramSttAdapter implements ISttAdapter {
       case 'webm':
       case 'webm_opus':
         return 'audio/webm';
+      case 'mp4':
+      case 'm4a':
+      case 'aac':
+        return 'audio/mp4';
+      case 'amr':
+        return 'audio/amr';
+      case 'opus':
+        return 'audio/opus';
       case 'mulaw':
         return 'audio/basic';
       default:
-        return 'audio/wav';
+        return undefined;
     }
   }
 

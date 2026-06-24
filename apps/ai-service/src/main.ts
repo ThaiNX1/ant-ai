@@ -6,6 +6,7 @@ import {
 } from '@nestjs/platform-fastify';
 import { Logger } from 'nestjs-pino';
 import { config } from 'dotenv';
+import multipart from '@fastify/multipart';
 import { AppModule } from './app/app.module';
 import { GlobalExceptionFilter } from './app/filters/global-exception.filter';
 
@@ -19,7 +20,14 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter()
   );
-  
+
+  // Register multipart plugin for file uploads (audio-translate)
+  await app.register(multipart, {
+    limits: {
+      fileSize: 25 * 1024 * 1024, // 25MB max audio file
+    },
+  });
+
   app.useWebSocketAdapter(new WsAdapter(app));
 
   app.useLogger(app.get(Logger));

@@ -1,12 +1,14 @@
 export { AdapterFactory } from './adapter.factory';
 export { AdapterError } from '../errors/adapter.error';
 export { GeminiLlmAdapter } from './gemini-llm.adapter';
+export { QwenFlashLlmAdapter } from './qwen-flash-llm.adapter';
 export { GeminiRealtimeAdapter } from './gemini-realtime.adapter';
 export { ElevenLabsTtsAdapter } from './elevenlabs-tts.adapter';
 export { OpenAiSttAdapter } from './openai-stt.adapter';
 export { OpenAiRealtimeAdapter } from './openai-realtime.adapter';
 export { GoogleTtsAdapter } from './google-tts.adapter';
 export { MinimaxTtsAdapter } from './minimax-tts.adapter';
+export { OpenAiTtsAdapter } from './openai-tts.adapter';
 export { GoogleSttAdapter } from './google-stt.adapter';
 export { DeepgramSttAdapter } from './deepgram-stt.adapter';
 export { DeepgramSttStreamAdapter } from './deepgram-stt-stream.adapter';

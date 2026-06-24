@@ -1,5 +1,6 @@
 import { AdapterFactory } from './adapter.factory';
 import { GeminiLlmAdapter } from './gemini-llm.adapter';
+import { QwenFlashLlmAdapter } from './qwen-flash-llm.adapter';
 import { ElevenLabsTtsAdapter } from './elevenlabs-tts.adapter';
 import { OpenAiSttAdapter } from './openai-stt.adapter';
 import { OpenAiRealtimeAdapter } from './openai-realtime.adapter';
@@ -16,6 +17,11 @@ describe('AdapterFactory', () => {
     it('should create GeminiLlmAdapter for provider "gemini"', () => {
       const adapter = AdapterFactory.createLlm({ ...baseConfig, provider: 'gemini' });
       expect(adapter).toBeInstanceOf(GeminiLlmAdapter);
+    });
+
+    it('should create QwenFlashLlmAdapter for provider "qwen"', () => {
+      const adapter = AdapterFactory.createLlm({ ...baseConfig, provider: 'qwen' });
+      expect(adapter).toBeInstanceOf(QwenFlashLlmAdapter);
     });
 
     it('should throw for unknown LLM provider', () => {

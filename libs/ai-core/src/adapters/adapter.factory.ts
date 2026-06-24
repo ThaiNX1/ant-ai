@@ -6,12 +6,14 @@ import { IRealtimeAdapter } from '../interfaces/realtime.interface';
 import { ISttStreamAdapter } from '../interfaces/stt-stream.interface';
 import { GeminiLlmAdapter } from './gemini-llm.adapter';
 import { OpenAiLlmAdapter } from './openai-llm.adapter';
+import { QwenFlashLlmAdapter } from './qwen-flash-llm.adapter';
 import { ElevenLabsTtsAdapter } from './elevenlabs-tts.adapter';
 import { OpenAiSttAdapter } from './openai-stt.adapter';
 import { OpenAiRealtimeAdapter } from './openai-realtime.adapter';
 import { GoogleTtsAdapter } from './google-tts.adapter';
 import { GeminiRealtimeAdapter } from './gemini-realtime.adapter';
 import { MinimaxTtsAdapter } from './minimax-tts.adapter';
+import { OpenAiTtsAdapter } from './openai-tts.adapter';
 import { GoogleSttAdapter } from './google-stt.adapter';
 import { DeepgramSttAdapter } from './deepgram-stt.adapter';
 import { DeepgramSttStreamAdapter } from './deepgram-stt-stream.adapter';
@@ -23,6 +25,8 @@ export class AdapterFactory {
         return new GeminiLlmAdapter(config);
       case 'openai':
         return new OpenAiLlmAdapter(config);
+      case 'qwen':
+        return new QwenFlashLlmAdapter(config);
       default:
         throw new Error(`Unknown LLM provider: ${config.provider}`);
     }
@@ -36,6 +40,8 @@ export class AdapterFactory {
         return new GoogleTtsAdapter(config);
       case 'minimax':
         return new MinimaxTtsAdapter(config);
+      case 'openai':
+        return new OpenAiTtsAdapter(config);
       default:
         throw new Error(`Unknown TTS provider: ${config.provider}`);
     }

@@ -4,17 +4,19 @@ import { LlmOptions } from '../interfaces/llm-options.interface';
 import { AdapterConfig } from '../interfaces/ai-core-options.interface';
 import { AdapterError } from '../errors/adapter.error';
 
+const DEFAULT_QWEN_BASE_URL = 'https://dashscope.aliyuncs.com/compatible-mode/v1';
+
 /**
- * OpenAI LLM Adapter — uses the openai SDK (ChatCompletion).
+ * Qwen Flash LLM Adapter — uses Alibaba Model Studio's OpenAI-compatible API.
  */
-export class OpenAiLlmAdapter implements ILlmAdapter {
+export class QwenFlashLlmAdapter implements ILlmAdapter {
   private readonly client: OpenAI;
   private readonly modelName: string;
 
   constructor(private readonly config: AdapterConfig) {
     this.client = new OpenAI({
       apiKey: config.apiKey,
-      ...(config.baseUrl ? { baseURL: config.baseUrl } : {}),
+      baseURL: config.baseUrl || DEFAULT_QWEN_BASE_URL,
     });
     this.modelName = config.model;
   }
@@ -27,7 +29,7 @@ export class OpenAiLlmAdapter implements ILlmAdapter {
         temperature: options?.temperature,
         max_tokens: options?.maxTokens,
         top_p: options?.topP,
-        stop: options?.stopSequences,
+        stop: options?.stopSequences
       });
 
       return response.choices[0]?.message?.content ?? '';
@@ -64,9 +66,9 @@ export class OpenAiLlmAdapter implements ILlmAdapter {
 
   private wrapError(error: unknown): AdapterError {
     const message =
-      error instanceof Error ? error.message : 'Unknown OpenAI LLM error';
+      error instanceof Error ? error.message : 'Unknown Qwen Flash LLM error';
     const code =
-      (error as { status?: number })?.status?.toString() ?? 'OPENAI_LLM_ERROR';
-    return new AdapterError(code, message, 'openai');
+      (error as { status?: number })?.status?.toString() ?? 'QWEN_LLM_ERROR';
+    return new AdapterError(code, message, 'qwen');
   }
 }

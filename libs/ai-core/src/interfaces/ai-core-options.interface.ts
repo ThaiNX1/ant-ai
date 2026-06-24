@@ -2,6 +2,8 @@ export interface AdapterConfig {
   provider: string;
   model: string;
   apiKey: string;
+  /** Custom base URL for OpenAI-compatible APIs (e.g. DeepSeek: https://api.deepseek.com) */
+  baseUrl?: string;
 }
 
 export interface NamedAdapterConfig extends AdapterConfig {
