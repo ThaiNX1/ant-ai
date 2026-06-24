@@ -1,6 +1,7 @@
 export type { ILlmAdapter } from './llm.interface';
 export type { ITtsAdapter } from './tts.interface';
 export type { ISttAdapter } from './stt.interface';
+export type { SttTranscriptionResult } from './stt-object.interface';
 export type { IRealtimeAdapter } from './realtime.interface';
 export type { AdapterConfig, NamedAdapterConfig, AiCoreOptions } from './ai-core-options.interface';
 export type { LlmOptions } from './llm-options.interface';

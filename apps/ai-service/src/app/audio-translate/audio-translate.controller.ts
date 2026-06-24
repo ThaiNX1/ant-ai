@@ -33,7 +33,7 @@ export class AudioTranslateController {
 
   constructor(
     private readonly audioTranslateService: AudioTranslateService,
-  ) {}
+  ) { }
 
   /**
    * POST /api/v1/audio-translate
@@ -53,6 +53,7 @@ export class AudioTranslateController {
       voiceId: data.voiceId,
       audioFormat: data.audioFormat,
       outputFormat: data.outputFormat,
+      sourceLanguages: data.sourceLanguages
     };
 
     const acceptHeader = req.headers['accept'] || '';
@@ -94,6 +95,7 @@ export class AudioTranslateController {
       voiceId: data.voiceId,
       audioFormat: data.audioFormat,
       outputFormat: data.outputFormat,
+      sourceLanguages: data.sourceLanguages
     };
 
     await this.streamAudioResponse(data.audioBuffer, options, reply);
@@ -136,10 +138,12 @@ export class AudioTranslateController {
     channels?: number;
     encoding?: string;
     outputFormat?: string;
+    sourceLanguages?: string[];
   }> {
     let audioBuffer: Buffer | null = null;
     let detectedFormat: string | undefined;
     const fields: Record<string, string> = {};
+    const repeatedFields: Record<string, string[]> = {};
 
     const parts = req.parts();
     for await (const part of parts) {
@@ -162,7 +166,12 @@ export class AudioTranslateController {
         );
       } else {
         // Collect form fields
-        fields[part.fieldname] = part.value as string;
+        const value = part.value as string;
+        fields[part.fieldname] = value;
+        repeatedFields[part.fieldname] = [
+          ...(repeatedFields[part.fieldname] ?? []),
+          value,
+        ];
       }
     }
 
@@ -200,6 +209,10 @@ export class AudioTranslateController {
       'channels',
     );
     const encoding = fields['encoding'];
+    const sourceLanguages = this.parseOptionalStringList([
+      ...(repeatedFields['sourceLanguages'] ?? []),
+      ...(repeatedFields['sourceLanguages[]'] ?? []),
+    ]);
 
     if (this.isRawPcmFormat(audioFormat) && !sampleRate) {
       this.logger.warn(
@@ -217,7 +230,8 @@ export class AudioTranslateController {
       `[Multipart] selected audioFormat="${audioFormat ?? 'unknown'}" ` +
       `clientAudioFormat="${fields['audioFormat'] ?? ''}" ` +
       `sampleRate="${sampleRate ?? ''}" channels="${channels ?? ''}" ` +
-      `encoding="${encoding ?? ''}"`,
+      `encoding="${encoding ?? ''}" ` +
+      `sourceLanguages="${sourceLanguages?.join(',') ?? ''}"`,
     );
 
     return {
@@ -230,7 +244,17 @@ export class AudioTranslateController {
       channels,
       encoding,
       outputFormat: fields['outputFormat'],
+      sourceLanguages,
     };
+  }
+
+  private parseOptionalStringList(values: string[]): string[] | undefined {
+    const parsed = values
+      .flatMap((value) => value.split(','))
+      .map((value) => value.trim())
+      .filter((value) => value.length > 0);
+
+    return parsed.length > 0 ? Array.from(new Set(parsed)) : undefined;
   }
 
   private parseOptionalPositiveInteger(

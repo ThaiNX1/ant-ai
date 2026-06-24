@@ -1,5 +1,6 @@
 import { ISttAdapter } from '../interfaces/stt.interface';
 import { SttOptions } from '../interfaces/stt-options.interface';
+import { SttTranscriptionResult } from '../interfaces/stt-object.interface';
 import { AdapterConfig } from '../interfaces/ai-core-options.interface';
 import { AdapterError } from '../errors/adapter.error';
 
@@ -10,12 +11,12 @@ const DEEPGRAM_API_URL = 'https://api.deepgram.com/v1/listen';
  * Uses native fetch to POST audio to Deepgram's /v1/listen endpoint.
  */
 export class DeepgramSttAdapter implements ISttAdapter {
-  constructor(private readonly config: AdapterConfig) {}
+  constructor(private readonly config: AdapterConfig) { }
 
   async transcribeAudio(
     audio: Buffer,
     options?: SttOptions,
-  ): Promise<string> {
+  ): Promise<SttTranscriptionResult> {
     try {
       const url = this.buildUrl(options);
       const contentType = this.mapContentType(options?.format);
@@ -42,8 +43,14 @@ export class DeepgramSttAdapter implements ISttAdapter {
       const data: any = await response.json();
       const transcript =
         data?.results?.channels?.[0]?.alternatives?.[0]?.transcript ?? '';
+      const detectedLanguage = data?.results?.channels?.[0]?.detected_language;
+      const languageConfidence = data?.results?.channels?.[0]?.language_confidence;
 
-      return transcript;
+      return {
+        text: transcript,
+        detectedLanguage,
+        languageConfidence,
+      };
     } catch (error: unknown) {
       if (error instanceof AdapterError) {
         throw error;
@@ -57,7 +64,16 @@ export class DeepgramSttAdapter implements ISttAdapter {
     url.searchParams.set('model', this.config.model || 'nova-3');
     url.searchParams.set('punctuate', 'true');
 
-    if (options?.language) {
+    if (options?.detectLanguage) {
+      const detectLanguages = options.sourceLanguages as string[] ?? [];
+      if (detectLanguages.length > 0) {
+        for (const language of detectLanguages) {
+          url.searchParams.append('detect_language', language);
+        }
+      } else {
+        url.searchParams.set('detect_language', 'true');
+      }
+    } else if (options?.language) {
       url.searchParams.set('language', options.language);
     }
 

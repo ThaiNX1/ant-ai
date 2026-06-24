@@ -1,5 +1,5 @@
 import { Controller, Inject, Post, Body } from '@nestjs/common';
-import { ISttAdapter, namedToken } from '@ai-platform/ai-core';
+import { ISttAdapter, namedToken, SttTranscriptionResult } from '@ai-platform/ai-core';
 
 @Controller('stt')
 export class SttController {
@@ -9,8 +9,7 @@ export class SttController {
   ) {}
 
   @Post('transcribe')
-  async transcribe(@Body() audioBuffer: Buffer): Promise<{ text: string }> {
-    const text = await this.whisper.transcribeAudio(audioBuffer);
-    return { text };
+  async transcribe(@Body() audioBuffer: Buffer): Promise<SttTranscriptionResult> {
+    return this.whisper.transcribeAudio(audioBuffer);
   }
 }

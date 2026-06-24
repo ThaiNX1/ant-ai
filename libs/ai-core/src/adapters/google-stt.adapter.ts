@@ -1,6 +1,7 @@
 import { SpeechClient } from '@google-cloud/speech';
 import { ISttAdapter } from '../interfaces/stt.interface';
 import { SttOptions } from '../interfaces/stt-options.interface';
+import { SttTranscriptionResult } from '../interfaces/stt-object.interface';
 import { AdapterConfig } from '../interfaces/ai-core-options.interface';
 import { AdapterError } from '../errors/adapter.error';
 
@@ -45,7 +46,7 @@ export class GoogleSttAdapter implements ISttAdapter {
   async transcribeAudio(
     audio: Buffer,
     options?: SttOptions,
-  ): Promise<string> {
+  ): Promise<SttTranscriptionResult> {
     try {
       const encoding = this.mapEncoding(options?.format);
       const autoDetect = !options?.language;
@@ -79,7 +80,7 @@ export class GoogleSttAdapter implements ISttAdapter {
         .join(' ')
         .trim();
 
-      return transcript || '';
+      return { text: transcript || '' };
     } catch (error: unknown) {
       throw this.wrapError(error);
     }
